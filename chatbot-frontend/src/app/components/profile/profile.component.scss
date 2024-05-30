@@ -1,0 +1,61 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+body {
+  margin: auto;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 82vh;
+  overflow: hidden;
+  padding: 30px;
+  background-color: #f4f4f4;
+}
+
+.profile-container {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px 50px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.header h1 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-container .field {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap; /* Allow wrapping of the value if it's too long */
+}
+
+.profile-container .field:last-child {
+  border-bottom: none;
+}
+
+.profile-container .label {
+  color: #555;
+  font-size: 1.2em;
+  font-weight: bold;
+  white-space: nowrap; /* Prevent the label from wrapping */
+  margin-right: 30px; /* Add some space between the label and the value */
+
+}
+
+.profile-container .value {
+  color: #777;
+  font-size: 1em;
+  word-break: break-word; /* Allow the value to wrap and break words if necessary */
+  flex: 1; /* Ensure the value takes up the remaining space */
+}

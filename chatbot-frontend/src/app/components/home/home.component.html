@@ -1,0 +1,19 @@
+<!-- home.component.html -->
+<section class="main-container">
+  <div class="welcome-message">
+    <h1>Benvenuti al Corso di Informatica dell'Università della Calabria</h1>
+    <p>Utilizza il nostro chatbot per ottenere informazioni sugli orari delle lezioni, le aule e i docenti.</p>
+    <button class="chat-button" (click)="onChatbotClick()">Chatta con noi</button>
+  </div>
+</section>
+
+<ng-template #loginPromptDialog>
+  <div class="login-prompt-dialog">
+    <h2>Registrazione necessaria</h2>
+    <p>Per utilizzare il chatbot, è necessario registrarsi o effettuare il login.</p>
+    <div class="mat-dialog-actions">
+      <button mat-button class="login-button" color="primary" (click)="goToLogin()" cdkFocusInitial>Vai al login</button>
+      <button mat-button class="close-button" (click)="closeLoginPromptDialog()">Chiudi</button>
+    </div>
+  </div>
+</ng-template>

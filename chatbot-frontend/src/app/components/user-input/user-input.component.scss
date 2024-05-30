@@ -1,0 +1,38 @@
+.user-input-container {
+    margin: auto;
+    height: 13vh; /* Adjust the height as needed */
+    width: 200vh;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+  }
+  
+  .input-textfield {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+  }
+  
+  .button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+  }
+  

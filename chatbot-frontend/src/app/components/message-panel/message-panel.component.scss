@@ -1,0 +1,99 @@
+.message-panel-container {
+  margin: auto;
+  height: 60vh; /* Adjust the height as needed */
+  width: 200vh;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+
+  /* Custom scrollbar styles */
+  &::-webkit-scrollbar {
+    width: 12px; /* Imposta la larghezza della scrollbar a 12px */
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px; /* Arrotonda gli angoli del track della scrollbar */
+    background: #f1f1f1; /* Imposta il colore di sfondo del track a grigio chiaro */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px; /* Arrotonda gli angoli del thumb della scrollbar */
+    background: #888; /* Imposta il colore di sfondo del thumb a grigio */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Scurisce il colore del thumb quando si passa sopra */
+  }
+}
+
+.message-inner-container {
+  display: flex;
+  padding: 10px;
+}
+
+.user-message {
+  justify-content: flex-end;
+}
+
+.assistant-message {
+  justify-content: flex-start;
+}
+
+.message-container {
+  display: flex;
+  align-items: center;
+  max-width: 70%; /* Ensures messages do not take more than 70% of the container's width */
+  word-wrap: break-word;
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0; /* Prevents the avatar from shrinking */
+}
+
+.message {
+  margin: 0 10px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #f1f1f1;
+  word-wrap: break-word;
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+  position: relative;
+}
+
+.assistant-message .message {
+  background-color: #e0e0e0;
+  border-top-left-radius: 0;
+  border: 1px solid #e0e0e0;
+}
+
+.user-message .message {
+  background-color: #dcf8c6; /* Light green background for user messages */
+  border-top-right-radius: 0;
+}
+
+.no-message-container {
+  background-color: #e0e0e0;
+  width: fit-content;
+  padding: 6px;
+  border-radius: 6px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.loading-icon {
+  position: fixed;
+  bottom: 150px;
+  left: 110px; /* Move the loading icon to the left */
+}

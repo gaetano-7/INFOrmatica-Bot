@@ -1,0 +1,18 @@
+<section class="chat-container">
+  <div class="chat-header">
+    <button (click)="openConfirmDeleteDialog()">Elimina Chat</button>
+  </div>
+  <app-message-panel [messages]="data" [loading]="loading" style="white-space: pre-line;"></app-message-panel>
+  <app-user-input (sendMessageEmitter)="getMessage($event)"></app-user-input>
+</section>
+
+<ng-template #confirmDeleteDialog>
+  <div class="confirm-delete-dialog">
+    <h2>Conferma Eliminazione</h2>
+    <p>Sei sicuro di voler eliminare la chat?</p>
+    <div class="dialog-actions">
+      <button mat-raised-button color="warn" (click)="confirmDelete()">Si</button>
+      <button mat-raised-button (click)="closeDialog()">No</button>
+    </div>
+  </div>
+</ng-template>

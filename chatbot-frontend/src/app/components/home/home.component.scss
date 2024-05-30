@@ -1,0 +1,88 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 89.5vh;
+  margin: auto;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  height: 100%; /* Ensures the container takes up the full height */
+}
+
+.welcome-message {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  max-width: 800px; /* Optional: to constrain the width */
+  width: 100%; /* Ensure it takes full available width */
+  box-sizing: border-box; /* Include padding in the element's width */
+}
+
+.welcome-message h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.welcome-message p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.chat-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  background-color: #00274d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-button:hover {
+  background-color: #004080;
+}
+
+.login-prompt-dialog {
+  background-color: white; /* Imposta il colore di sfondo a bianco */
+  padding: 20px; /* Aggiunge padding di 20px */
+  border-radius: 8px; /* Arrotonda gli angoli del contenitore */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
+  max-width: 400px; /* Imposta la larghezza massima del dialog */
+  margin: auto; /* Centra il dialog */
+}
+
+.login-prompt-dialog h2 {
+  font-size: 20px; /* Imposta la dimensione del font */
+  margin-top: 0; /* Rimuove il margine superiore */
+  margin-bottom: 20px; /* Aggiunge un margine inferiore */
+  text-align: center; /* Centra il testo */
+}
+
+.login-prompt-dialog p {
+  font-size: 15px; /* Imposta la dimensione del font */
+  margin-bottom: 20px; /* Aggiunge un margine inferiore */
+  text-align: center; /* Centra il testo */
+}
+
+.dialog-actions {
+  display: flex; /* Imposta l'elemento come un flex container */
+  justify-content: space-between; /* Spazia gli elementi figli in modo uniforme */
+  margin-top: 20px; /* Aggiunge un margine superiore */
+}
+
+.dialog-actions button {
+  flex: 1; /* Permette ai pulsanti di crescere uniformemente */
+  margin: 0 10px; /* Aggiunge un margine orizzontale */
+  font-size: 14px; /* Imposta la dimensione del font */
+}

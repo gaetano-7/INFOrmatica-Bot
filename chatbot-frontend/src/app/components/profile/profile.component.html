@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="profile-container">
+  <div class="header">
+    <h1>Il tuo profilo</h1>
+  </div>
+  <div class="field">
+    <span class="label">User Id:</span>
+    <span class="value">{{ id }}</span>
+  </div>
+  <div class="field">
+    <span class="label">Username:</span>
+    <span class="value">{{ username }}</span>
+  </div>
+  <div class="field">
+    <span class="label">User Role:</span>
+    <span class="value">{{ userRole }}</span>
+  </div>
+  <div class="field">
+    <span class="label">Access Token:</span>
+    <span class="value">{{ accessToken }}</span>
+  </div>
+  <div class="field">
+    <span class="label">Token LLM:</span>
+    <span class="value">{{ llmToken }}</span>
+  </div>
+</div>
+</body>
+</html>

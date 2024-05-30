@@ -1,0 +1,78 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 91vh;
+  margin: auto;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  background-color: #f4f4f4;
+  box-sizing: border-box;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.chat-header button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-header button:hover {
+  background-color: #ff1a1a;
+}
+
+app-message-panel {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+app-user-input {
+  flex-shrink: 0;
+}
+
+.confirm-delete-dialog {
+  background-color: white; /* Imposta il colore di sfondo a bianco */
+  padding: 20px; /* Aggiunge padding di 20px */
+  border-radius: 8px; /* Arrotonda gli angoli del contenitore */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
+  max-width: 400px; /* Imposta la larghezza massima del dialog */
+  margin: auto; /* Centra il dialog */
+}
+
+.confirm-delete-dialog h2 {
+  font-size: 20px; /* Imposta la dimensione del font */
+  margin-top: 0; /* Rimuove il margine superiore */
+  margin-bottom: 20px; /* Aggiunge un margine inferiore */
+  text-align: center; /* Centra il testo */
+}
+
+.confirm-delete-dialog p {
+  font-size: 15px; /* Imposta la dimensione del font */
+  margin-bottom: 20px; /* Aggiunge un margine inferiore */
+  text-align: center; /* Centra il testo */
+}
+
+.dialog-actions {
+  display: flex; /* Imposta l'elemento come un flex container */
+  justify-content: space-between; /* Spazia gli elementi figli in modo uniforme */
+  margin-top: 20px; /* Aggiunge un margine superiore */
+}
+
+.dialog-actions button {
+  flex: 1; /* Permette ai pulsanti di crescere uniformemente */
+  margin: 0 10px; /* Aggiunge un margine orizzontale */
+  font-size: 14px; /* Imposta la dimensione del font */
+}

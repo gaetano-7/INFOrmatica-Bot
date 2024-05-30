@@ -1,0 +1,120 @@
+//header.component.scss
+.header-outer-container {
+  background-color: #b71918; // Colore di sfondo del container esterno
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  
+  .logo {
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  
+  button.mat-icon-button {
+    color: #ffffff;
+    margin-left: 15px;
+  }
+
+  .dropdown {
+    position: relative;
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #ffffff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      min-width: 150px;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        color: #333;
+        text-decoration: none;
+        transition: background 0.3s;
+
+        mat-icon {
+          margin-right: 10px;
+        }
+
+        &:hover {
+          background-color: #f1f1f1;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/////////////////////////////////////////////////////////
+
+.logout-dialog, .login-prompt-dialog {
+  background-color: white; /* Imposta il colore di sfondo a bianco */
+  padding: 40px; /* Aggiunge padding di 20px */
+  border-radius: 8px; /* Arrotonda gli angoli del contenitore */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
+  max-width: 400px; /* Imposta la larghezza massima del dialog */
+  margin: auto; /* Centra il dialog */
+}
+
+.logout-dialog, .login-prompt-dialog h2 {
+  font-size: 20px; /* Imposta la dimensione del font */
+  margin-top: 0; /* Rimuove il margine superiore */
+  margin-bottom: 20px; /* Aggiunge un margine inferiore */
+  text-align: center; /* Centra il testo */
+}
+
+.logout-dialog, .login-prompt-dialog p {
+  font-size: 15px; /* Imposta la dimensione del font */
+  margin-bottom: 0px; /* Aggiunge un margine inferiore */
+  text-align: center; /* Centra il testo */
+}
+
+.dialog-actions {
+  display: flex; /* Imposta l'elemento come un flex container */
+  justify-content: space-between; /* Spazia gli elementi figli in modo uniforme */
+  margin-top: 20px; /* Aggiunge un margine superiore */
+}
+
+.dialog-actions button {
+  flex: 1; /* Permette ai pulsanti di crescere uniformemente */
+  margin: 0 10px; /* Aggiunge un margine orizzontale */
+  font-size: 14px; /* Imposta la dimensione del font */
+}
