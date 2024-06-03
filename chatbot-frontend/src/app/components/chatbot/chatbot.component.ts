@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+//chatbot.component.ts
+import { Component, OnInit, ViewChild, TemplateRef, ElementRef, Input } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Message, MESSAGE_TYPE } from '../../utility/constants';
 import { v4 as uuidv4 } from 'uuid';
 import { AnythingLLMService } from '../../services/anythingLLM.services';
 import { switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+
+const ENTER_KEY_ASCII = 13;
 
 @Component({
   selector: 'app-chatbot',
@@ -13,17 +16,74 @@ import { environment } from '../../../environments/environment';
   providers: [AnythingLLMService]
 })
 export class ChatbotComponent implements OnInit {
-  data: Message[] = [];
-  loading: boolean = false;
+  private _messages: Message[] = [];
+  @Input() loading!: boolean;
   private apiKey = environment.apiKey;
   private dialogRef!: MatDialogRef<any>;
+  private scrollContainer: any;
+
+  message: string = "";
+
+  userPath = "../../assets/user-path.png";
+  avatarPath = "../../assets/unical-profile.png";
 
   @ViewChild('confirmDeleteDialog') confirmDeleteDialog!: TemplateRef<any>;
+  @ViewChild('scrollframe', { static: true }) scrollFrame!: ElementRef;
 
   constructor(
     private anythingLLMService: AnythingLLMService,
     private dialog: MatDialog
   ) {}
+
+  sendMessage() {
+    if (this.message) {
+      this.getMessage(this.message);  // Chiamare direttamente getMessage
+      this.message = "";
+    }
+  }  
+
+  onKeyUp($event: any) {
+    if ($event.which === ENTER_KEY_ASCII) {
+      this.sendMessage();
+    }
+  }
+
+  @Input() set messages(data: Message[]) {
+    this.updateData(data).then(() => {
+      if (data.length) {
+        this.scrollToBottom();
+      }
+    });
+  }
+
+  get messages(): Message[] {
+    return this._messages;
+  }
+
+  updateData(data: Message[]) {
+    return new Promise((resolve) => {
+      this._messages = [...data];
+      resolve(true);
+    });
+  }
+
+  ngAfterViewInit() {
+    this.scrollContainer = this.scrollFrame?.nativeElement;
+  }
+
+  public scrollToBottom(): void {
+    if (this.scrollContainer) {
+      this.scrollContainer.scroll({
+        top: this.scrollContainer.scrollHeight,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  trackByMessageId(index: number, message: Message): string {
+    return message.id;
+  }
 
   ngOnInit() {
     this.loadConversation();
@@ -33,7 +93,7 @@ export class ChatbotComponent implements OnInit {
   getMessage($event: string) {
     if (!this.loading) {
       let messageObject: Message = this.createMessage($event, MESSAGE_TYPE.USER);
-      this.data = [...this.data, messageObject];
+      this._messages = [...this._messages, messageObject];
       this.loading = true;
       this.saveConversation();
 
@@ -44,7 +104,7 @@ export class ChatbotComponent implements OnInit {
           (response: any) => {
             const assistantMessage = this.parseResponse(response.response);
             messageObject = this.createMessage(assistantMessage, MESSAGE_TYPE.ASSISTANT);
-            this.data = [...this.data, messageObject];
+            this._messages = [...this._messages, messageObject];
             this.loading = false;
             this.saveConversation();
           },
@@ -59,7 +119,7 @@ export class ChatbotComponent implements OnInit {
       }
     } else {
       let messageObject: Message = this.createMessage($event, MESSAGE_TYPE.USER);
-      this.data = [...this.data, messageObject];
+      this._messages = [...this._messages, messageObject];
       this.saveConversation();
     }
   }
@@ -109,13 +169,13 @@ export class ChatbotComponent implements OnInit {
   }
 
   private saveConversation() {
-    localStorage.setItem('conversation', JSON.stringify(this.data));
+    localStorage.setItem('conversation', JSON.stringify(this._messages));
   }
 
   private loadConversation() {
     const savedConversation = localStorage.getItem('conversation');
     if (savedConversation) {
-      this.data = JSON.parse(savedConversation);
+      this._messages = JSON.parse(savedConversation);
     }
   }
 
@@ -124,7 +184,7 @@ export class ChatbotComponent implements OnInit {
       this.anythingLLMService.getConversation(this.apiKey).subscribe(
         (response: any) => {
           console.log('Conversation fetched:', response);
-          this.data = [...this.data, ...response];
+          this._messages = [...this._messages, ...response];
           this.saveConversation();
         },
         error => {
@@ -157,7 +217,7 @@ export class ChatbotComponent implements OnInit {
       })
     ).subscribe(
       () => {
-        this.data = [];
+        this._messages = [];
         this.saveConversation();
         this.closeDialog();
       },

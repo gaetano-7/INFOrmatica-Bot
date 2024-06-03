@@ -2,33 +2,75 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin: 0 auto; // Centra il contenuto orizzontalmente
+  padding-top: 60px; // Padding superiore per fare spazio all'header
+  width: 100%; // Assicurati che il contenuto occupi tutta la larghezza disponibile
+  box-sizing: border-box; // Include il padding nella larghezza dell'elemento
+
+  @media (max-width: 768px) {
+    padding-top: 50px; // Riduci il padding superiore sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 40px; // Riduci ulteriormente il padding superiore sui dispositivi più piccoli
+  }
 }
 
 body {
-  margin: auto;
-  font-family: 'Arial', sans-serif;
+  margin: 0; // Rimuovi il margine per assicurare che il contenuto sia allineato correttamente
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 82vh;
+  height: calc(100vh - 60px); // Altezza calcolata per tenere conto dell'header fisso
   overflow: hidden;
-  padding: 30px;
-  background-color: #f4f4f4;
+  padding: 0; // Rimuovi il padding per evitare spazi vuoti indesiderati
+  backdrop-filter: blur(3px);
+  background-color: lightgray;
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 50px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    height: calc(100vh - 40px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
+  }
 }
 
 .profile-container {
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 30px 50px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   text-align: left;
+  max-width: 950px; // Limita la larghezza massima per una migliore visualizzazione su schermi più grandi
+  width: 100%; // Assicurati che occupi tutta la larghezza disponibile
+  box-sizing: border-box; // Include il padding nella larghezza dell'elemento
+
+  @media (max-width: 768px) {
+    padding: 20px 15px; // Riduci il padding sui dispositivi più piccoli
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 10px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+    max-width: 95%;
+  }
 }
 
 .header h1 {
-  color: #333;
   font-size: 2em;
-  margin-bottom: 20px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1.8em; // Riduci la dimensione del font sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+  }
 }
 
 .profile-container .field {
@@ -37,7 +79,17 @@ body {
   margin-bottom: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
-  flex-wrap: wrap; /* Allow wrapping of the value if it's too long */
+  flex-wrap: wrap; // Permetti il wrapping del valore se è troppo lungo
+
+  @media (max-width: 768px) {
+    margin-bottom: 12px; // Riduci il margine inferiore sui dispositivi più piccoli
+    padding-bottom: 8px; // Riduci il padding inferiore sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 10px; // Riduci ulteriormente il margine inferiore sui dispositivi più piccoli
+    padding-bottom: 6px; // Riduci ulteriormente il padding inferiore sui dispositivi più piccoli
+  }
 }
 
 .profile-container .field:last-child {
@@ -45,17 +97,33 @@ body {
 }
 
 .profile-container .label {
-  color: #555;
   font-size: 1.2em;
   font-weight: bold;
-  white-space: nowrap; /* Prevent the label from wrapping */
-  margin-right: 30px; /* Add some space between the label and the value */
+  white-space: nowrap; // Impedisci il wrapping dell'etichetta
+  margin-right: 30px; // Aggiungi spazio tra l'etichetta e il valore
 
+  @media (max-width: 768px) {
+    font-size: 1em; // Riduci la dimensione del font sui dispositivi più piccoli
+    margin-right: 20px; // Riduci il margine destro sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+    margin-right: 10px; // Riduci ulteriormente il margine destro sui dispositivi più piccoli
+  }
 }
 
 .profile-container .value {
   color: #777;
   font-size: 1em;
-  word-break: break-word; /* Allow the value to wrap and break words if necessary */
-  flex: 1; /* Ensure the value takes up the remaining space */
+  word-break: break-word; // Permetti il wrapping e la rottura delle parole se necessario
+  flex: 1; // Assicura che il valore occupi lo spazio rimanente
+
+  @media (max-width: 768px) {
+    font-size: 0.9em; // Riduci la dimensione del font sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+  }
 }

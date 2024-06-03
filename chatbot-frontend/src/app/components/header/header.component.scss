@@ -1,10 +1,26 @@
 //header.component.scss
 .header-outer-container {
-  background-color: #b71918; // Colore di sfondo del container esterno
+  background-color: #b71918;
   padding: 5px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+  height: 60px; // Specifica l'altezza dell'header
+
+  @media (max-width: 768px) {
+    padding: 5px 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px 5px;
+    height: auto;
+    flex-direction: row; // Mantieni il layout in riga
+  }
 }
 
 .header-container {
@@ -15,13 +31,13 @@
   .logo {
     height: 50px;
     margin-right: 10px;
+
+    @media (max-width: 480px) {
+      height: 40px;
+      margin-right: 5px;
+    }
   }
 
-  .heading {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff;
-  }
 }
 
 .icons-container {
@@ -31,6 +47,10 @@
   button.mat-icon-button {
     color: #ffffff;
     margin-left: 15px;
+
+    @media (max-width: 480px) {
+      margin-left: 10px;
+    }
   }
 
   .dropdown {
@@ -41,6 +61,12 @@
       border: none;
       color: #ffffff;
       cursor: pointer;
+      padding: 0; // Assicurati che non ci sia padding extra che possa causare overflow
+      margin-right: 10px; // Aggiungi un piccolo margine a destra per evitare che l'icona venga tagliata
+
+      @media (max-width: 480px) {
+        margin-right: 5px;
+      }
     }
 
     .dropdown-menu {
@@ -54,6 +80,10 @@
       border-radius: 4px;
       overflow: hidden;
       cursor: pointer;
+
+      @media (max-width: 480px) {
+        min-width: 120px;
+      }
 
       a {
         display: flex;
@@ -83,7 +113,6 @@
   display: block;
 }
 
-/////////////////////////////////////////////////////////
 
 .logout-dialog, .login-prompt-dialog {
   background-color: white; /* Imposta il colore di sfondo a bianco */
@@ -92,6 +121,16 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
   max-width: 400px; /* Imposta la larghezza massima del dialog */
   margin: auto; /* Centra il dialog */
+
+  @media (max-width: 768px) {
+    padding: 30px;
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 20px;
+    max-width: 95%;
+  }
 }
 
 .logout-dialog, .login-prompt-dialog h2 {
@@ -99,22 +138,39 @@
   margin-top: 0; /* Rimuove il margine superiore */
   margin-bottom: 20px; /* Aggiunge un margine inferiore */
   text-align: center; /* Centra il testo */
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 }
 
 .logout-dialog, .login-prompt-dialog p {
   font-size: 15px; /* Imposta la dimensione del font */
   margin-bottom: 0px; /* Aggiunge un margine inferiore */
   text-align: center; /* Centra il testo */
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 }
 
 .dialog-actions {
   display: flex; /* Imposta l'elemento come un flex container */
   justify-content: space-between; /* Spazia gli elementi figli in modo uniforme */
   margin-top: 20px; /* Aggiunge un margine superiore */
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .dialog-actions button {
   flex: 1; /* Permette ai pulsanti di crescere uniformemente */
   margin: 0 10px; /* Aggiunge un margine orizzontale */
   font-size: 14px; /* Imposta la dimensione del font */
+
+  @media (max-width: 480px) {
+    margin: 10px 0;
+  }
 }

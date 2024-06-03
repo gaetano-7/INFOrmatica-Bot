@@ -14,14 +14,20 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="username">Username</label>
-        <input id="username" formControlName="username" type="text" placeholder="es. mario.rossi"required>
+      <input id="username" formControlName="username" type="text" placeholder="es. mario.rossi"required>
+      <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error">
+        Inserisci il tuo username
+      </div>
     </div>
     <div>
       <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" placeholder="La tua password" required>
+      <input id="password" formControlName="password" type="password" placeholder="La tua password" required>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+        Inserisci la tua password
+      </div>
     </div>
     <div>
-      <button type="submit" [disabled]="loading">Login</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="loading">Login</button>
     </div>
     <div *ngIf="error" class="error">
       {{ error }}

@@ -3,11 +3,13 @@
   height: 60vh; /* Adjust the height as needed */
   width: 200vh;
   overflow-y: auto;
-  background-color: white;
   border: 1px solid #ddd;
   border-radius: 20px;
   padding: 10px;
   display: flex;
+  background-image: url("/assets/background-blur.png");
+  background-size: cover;
+  background-position: center;
   flex-direction: column;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */

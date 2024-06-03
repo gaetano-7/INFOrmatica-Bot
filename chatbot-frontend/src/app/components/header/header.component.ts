@@ -1,3 +1,4 @@
+//home.component.ts
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';

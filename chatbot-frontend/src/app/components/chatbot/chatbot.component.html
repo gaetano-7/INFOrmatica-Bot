@@ -1,18 +1,63 @@
-<section class="chat-container">
-  <div class="chat-header">
-    <button (click)="openConfirmDeleteDialog()">Elimina Chat</button>
-  </div>
-  <app-message-panel [messages]="data" [loading]="loading" style="white-space: pre-line;"></app-message-panel>
-  <app-user-input (sendMessageEmitter)="getMessage($event)"></app-user-input>
-</section>
-
-<ng-template #confirmDeleteDialog>
-  <div class="confirm-delete-dialog">
-    <h2>Conferma Eliminazione</h2>
-    <p>Sei sicuro di voler eliminare la chat?</p>
-    <div class="dialog-actions">
-      <button mat-raised-button color="warn" (click)="confirmDelete()">Si</button>
-      <button mat-raised-button (click)="closeDialog()">No</button>
+<!--chatbot.component.html-->
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="header-left">
+        <div class="avatar" [ngStyle]="{'background-image': 'url(' + avatarPath + ')'}"></div>
+        <span class="assistant-name">Assistant</span>
+      </div>
+      <button mat-raised-button color="warn" (click)="openConfirmDeleteDialog()">Elimina Chat</button>
     </div>
+
+    <section class="message-panel-container" #scrollframe>
+      <ng-container *ngIf="messages.length; else noMessages">
+        <ng-container *ngFor="let message of messages; trackBy: trackByMessageId">
+          <div [ngClass]="{'message-inner-container': true, 'user-message': message.sender === 'user', 'assistant-message': message.sender === 'assistant'}">
+            <div class="message-container">
+              <div *ngIf="message.sender === 'assistant'" class="avatar" [ngStyle]="{'background-image': 'url(' + avatarPath + ')'}"></div>
+              <div class="message">{{ message.content }}</div>
+              <div *ngIf="message.sender === 'user'" class="avatar" [ngStyle]="{'background-image': 'url(' + userPath + ')'}"></div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #noMessages>
+        <div class="no-message-container">Nessun messaggio</div>
+      </ng-template>
+
+      <div *ngIf="loading" class="loading-icon">
+        <img src="../../assets/loading.svg" width="70" />
+      </div>
+    
+      <audio #audio src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3"></audio>
+      <audio #audioToggle src="https://assets.mixkit.co/active_storage/sfx/2925/2925-preview.mp3"></audio>
+    </section>
+
+    <section class="user-input-container">
+      <input
+        class="input-textfield"
+        [(ngModel)]="message"
+        placeholder="Di che informazione hai bisogno?"
+        type="text"
+        (keyup)="onKeyUp($event)"
+      />
+      <button class="button" (click)="getMessage(message)">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </section>
   </div>
-</ng-template>
+
+  <audio #audio src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3"></audio>
+  <audio #audioToggle src="https://assets.mixkit.co/active_storage/sfx/2925/2925-preview.mp3"></audio>
+
+  <ng-template #confirmDeleteDialog>
+    <div class="confirm-delete-dialog">
+      <h2>Conferma Eliminazione</h2>
+      <p>Sei sicuro di voler eliminare la chat?</p>
+      <div class="dialog-actions">
+        <button mat-raised-button color="warn" (click)="confirmDelete()">Si</button>
+        <button mat-raised-button (click)="closeDialog()">No</button>
+      </div>
+    </div>
+  </ng-template>
+</body>

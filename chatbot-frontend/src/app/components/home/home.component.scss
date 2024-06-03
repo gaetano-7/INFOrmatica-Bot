@@ -2,87 +2,184 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 89.5vh;
-  margin: auto;
+  margin: 0 auto; // Centra il contenuto orizzontalmente
+  padding-top: 60px; // Padding superiore per fare spazio all'header
+  width: 100%; // Assicurati che il contenuto occupi tutta la larghezza disponibile
+  box-sizing: border-box; // Include il padding nella larghezza dell'elemento
+
+  @media (max-width: 768px) {
+    padding-top: 50px; // Riduci il padding superiore sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 40px; // Riduci ulteriormente il padding superiore sui dispositivi più piccoli
+  }
+}
+
+body {
+  margin: 0; // Rimuovi il margine per assicurare che il contenuto sia allineato correttamente
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px); // Altezza calcolata per tenere conto dell'header fisso
+  overflow: hidden;
+  padding: 0; // Rimuovi il padding per evitare spazi vuoti indesiderati
+  backdrop-filter: blur(3px);
+  background-color: lightgray;
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 50px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    height: calc(100vh - 40px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
+  }
 }
 
 .main-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  background-color: #f4f4f4;
-  height: 100%; /* Ensures the container takes up the full height */
-}
-
-.welcome-message {
   background-color: white;
-  padding: 40px;
   border-radius: 10px;
+  padding: 30px 20px; // Riduci il padding per migliorare la visualizzazione sui dispositivi mobili
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
-  max-width: 800px; /* Optional: to constrain the width */
-  width: 100%; /* Ensure it takes full available width */
-  box-sizing: border-box; /* Include padding in the element's width */
+  width: 100%; // Assicurati che il contenitore occupi tutta la larghezza disponibile
+  max-width: 950px; // Limita la larghezza massima per una migliore visualizzazione su schermi più grandi
+  box-sizing: border-box; // Include il padding nella larghezza dell'elemento
+
+  @media (max-width: 768px) {
+    padding: 20px 10px; // Riduci il padding sui dispositivi più piccoli
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 5px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+    max-width: 95%;
+  }
+
+  button {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3f51b5;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; // Riduci il tempo di transizione
+
+    @media (max-width: 768px) {
+      padding: 8px; // Riduci il padding sui dispositivi più piccoli
+      font-size: 14px; // Riduci la dimensione del font
+    }
+
+    @media (max-width: 480px) {
+      padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+      font-size: 13px; // Riduci ulteriormente la dimensione del font
+    }
+  }
+
+  button:hover {
+    background-color: #5784b4; 
+  }
 }
 
 .welcome-message h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+  font-size: 2em;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1.8em; // Riduci la dimensione del font sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+  }
 }
 
-.welcome-message p {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-}
-
-.chat-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  color: white;
-  background-color: #00274d;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.chat-button:hover {
-  background-color: #004080;
-}
 
 .login-prompt-dialog {
-  background-color: white; /* Imposta il colore di sfondo a bianco */
-  padding: 20px; /* Aggiunge padding di 20px */
-  border-radius: 8px; /* Arrotonda gli angoli del contenitore */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
-  max-width: 400px; /* Imposta la larghezza massima del dialog */
-  margin: auto; /* Centra il dialog */
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: auto;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+    max-width: 95%;
+  }
 }
 
 .login-prompt-dialog h2 {
-  font-size: 20px; /* Imposta la dimensione del font */
-  margin-top: 0; /* Rimuove il margine superiore */
-  margin-bottom: 20px; /* Aggiunge un margine inferiore */
-  text-align: center; /* Centra il testo */
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+
+  
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 }
 
 .login-prompt-dialog p {
-  font-size: 15px; /* Imposta la dimensione del font */
-  margin-bottom: 20px; /* Aggiunge un margine inferiore */
-  text-align: center; /* Centra il testo */
+  font-size: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
 }
 
 .dialog-actions {
-  display: flex; /* Imposta l'elemento come un flex container */
-  justify-content: space-between; /* Spazia gli elementi figli in modo uniforme */
-  margin-top: 20px; /* Aggiunge un margine superiore */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .dialog-actions button {
-  flex: 1; /* Permette ai pulsanti di crescere uniformemente */
-  margin: 0 10px; /* Aggiunge un margine orizzontale */
-  font-size: 14px; /* Imposta la dimensione del font */
+  flex: 1;
+  margin: 0 10px;
+  font-size: 14px;
+
+  @media (max-width: 480px) {
+    margin: 10px 0;
+    font-size: 13px;
+  }
+}
+
+/* Media Queries per la responsività */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 20px 10px; // Riduci il padding sui dispositivi più piccoli
+  }
+
+  button {
+    padding: 8px; // Riduci il padding
+    font-size: 14px; // Riduci la dimensione del font
+  }
 }

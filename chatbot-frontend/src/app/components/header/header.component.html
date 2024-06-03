@@ -1,8 +1,7 @@
 <!-- header.component.html -->
 <div class="header-outer-container">
   <div class="header-container" routerLink="/home">
-    <img src="../../assets/unical-logo.png" alt="Logo" class="logo" />
-    <div class="heading">INFOrmatica Bot</div>
+    <img src="../../assets/logo.png" alt="Logo" class="logo" />
   </div>
   <div class="icons-container">
     <button mat-icon-button (click)="onChatbotClick()">
@@ -70,8 +69,8 @@
     <h2>Registrazione necessaria</h2>
     <p>Per utilizzare il chatbot, è necessario registrarsi o effettuare il login.</p>
     <div class="mat-dialog-actions">
-      <button mat-button class="login-button" color="primary" (click)="goToLogin()" cdkFocusInitial>Vai al login</button>
-      <button mat-button class="close-button" (click)="closeLoginPromptDialog()">Chiudi</button>
+      <button mat-raised-button color="primary" class="login-button" (click)="goToLogin()" cdkFocusInitial>Vai al login</button>
+      <button mat-raised-button class="close-button" (click)="closeLoginPromptDialog()">Chiudi</button>
     </div>
   </div>
 </ng-template>

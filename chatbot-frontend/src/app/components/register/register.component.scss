@@ -1,90 +1,228 @@
-//register.component.scss
 :host {
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 91vh;
-  margin: auto;
+  margin: 0 auto;
+  padding-top: 60px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding-top: 50px; // Riduci il padding superiore sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 40px; // Riduci ulteriormente il padding superiore sui dispositivi più piccoli
+  }
 }
 
-
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 88vh;
-    overflow: hidden;
-    padding: 10px;
-    backdrop-filter: blur(3px);
-    background-color: #f4f4f4;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  padding: 0;
+  backdrop-filter: blur(3px);
+  background-color: lightgray;
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 50px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
+  }
+
+  @media (max-width: 480px) {
+    height: calc(100vh - 40px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
+  }
 }
 
 .register-container {
-    background-color: white;
-    border-radius: 10px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 150px;
-    padding-right: 150px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  
-    form {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 950px;
+  max-height: 580px;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 20px 15px; // Riduci il padding sui dispositivi più piccoli
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px 10px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+    max-width: 95%;
+    max-height: none; // Rimuovi il limite di altezza sui dispositivi più piccoli
+  }
+
+  h1 {
+    font-size: 2em;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      font-size: 1.8em; // Riduci la dimensione del font sui dispositivi più piccoli
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.5em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+    }
+  }
+
+  p {
+    margin-top: 1rem;
+    text-align: center;
+    color: #777;
+
+    @media (max-width: 480px) {
+      font-size: 0.9em; // Riduci la dimensione del font sui dispositivi più piccoli
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    .row {
       display: flex;
-      flex-direction: column;
-  
+      justify-content: space-between;
+      gap: 20px;
+
+      &.single {
+        flex-direction: column;
+      }
+
       div {
+        flex: 1;
         margin-bottom: 10px;
-  
+
         label {
+          font-size: 1.2em;
           display: block;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.5em;
           font-weight: bold;
+
+          @media (max-width: 768px) {
+            font-size: 1em; // Riduci la dimensione del font sui dispositivi più piccoli
+          }
+
+          @media (max-width: 480px) {
+            font-size: 0.9em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+          }
         }
-  
+
         input {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-  
-        .error {
-          color: #d9534f;
-          font-size: 0.875rem;
-          margin-top: 0.25rem;
-        }
-      }
-  
-      button {
-        display: block;
-        margin-top: 10px;
-        margin-left: 12px;
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        background-color: #007bff;
-        color: #fff;
-        font-size: 15px;
-        cursor: pointer;
-        transition: background-color 1s ease;
-  
-        &:disabled {
-          background-color: #6c757d;
-          cursor: not-allowed;
+          display: block;
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+
+          @media (max-width: 768px) {
+            padding: 8px; // Riduci il padding sui dispositivi più piccoli
+          }
+
+          @media (max-width: 480px) {
+            padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+          }
         }
       }
-  
-      .error {
-        color: #d9534f;
-        margin-top: 1rem;
-        text-align: center;
+    }
+
+    button {
+      display: block;
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #3f51b5;
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      @media (max-width: 768px) {
+        padding: 8px; // Riduci il padding sui dispositivi più piccoli
+        font-size: 14px; // Riduci la dimensione del font sui dispositivi più piccoli
+      }
+
+      @media (max-width: 480px) {
+        padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+        font-size: 13px; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+      }
+    }
+
+    button:hover {
+      background-color: #5784b4;
+    }
+
+    .error {
+      color: #d9534f;
+      margin-top: 1rem;
+      text-align: center;
+
+      @media (max-width: 480px) {
+        font-size: 0.9em; // Riduci la dimensione del font sui dispositivi più piccoli
       }
     }
   }
-  
+}
+
+/* Media Queries per la responsività */
+@media (max-width: 768px) {
+  .register-container {
+    padding: 20px 10px;
+  }
+
+  form .row {
+    flex-direction: column;
+
+    div {
+      margin-bottom: 8px;
+
+      label {
+        font-size: 0.9rem;
+      }
+
+      input {
+        padding: 8px;
+      }
+    }
+  }
+
+  button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 15px 10px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+  }
+
+  form .row {
+    div {
+      margin-bottom: 8px;
+
+      label {
+        font-size: 0.9rem; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+      }
+
+      input {
+        padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+      }
+    }
+  }
+
+  button {
+    padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+    font-size: 13px; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+  }
+}

@@ -1,19 +1,35 @@
 //admin-screen.component.scss
 :host {
-  display: flex; /* Imposta il contenitore come un flex container */
-  flex-direction: column; /* Imposta la direzione dei figli come colonne */
-  flex: 1; /* Permette al contenitore di crescere per riempire lo spazio disponibile */
-  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 auto; // Centra il contenuto orizzontalmente
+  padding-top: 60px; // Padding superiore per fare spazio all'header
+  width: 100%; // Assicurati che il contenuto occupi tutta la larghezza disponibile
+  box-sizing: border-box; // Include il padding nella larghezza dell'elemento
+}
+
+body {
+  margin: 0; // Rimuovi il margine per assicurare che il contenuto sia allineato correttamente
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px); // Altezza calcolata per tenere conto dell'header fisso
+  overflow: hidden;
+  padding: 0; // Rimuovi il padding per evitare spazi vuoti indesiderati
+  backdrop-filter: blur(3px);
+  background-color: lightgray;
 }
 
 .admin-grid {
-  margin: auto;
   display: grid; /* Imposta un grid layout */
   grid-template-columns: 1fr 1fr; /* Imposta due colonne uguali */
   grid-template-rows: 1fr 1fr; /* Imposta due righe uguali */
   gap: 25px; /* Imposta uno spazio di 20px tra le celle della griglia */
   padding: 25px;
-  background-color: #f4f4f4;
 }
 
 .add_schedule-container .schedule-form {
@@ -27,52 +43,49 @@
 }
 
 .admin-container {
-  background-color: white; /* Imposta il colore di sfondo a bianco */
-  border-radius: 8px; /* Arrotonda gli angoli del contenitore */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
-  padding: 15px; /* Aggiunge padding di 20px all'interno del contenitore */
-  overflow: auto; /* Permette lo scorrimento verticale */
-  max-height: 250px; /* Imposta l'altezza massima a 300px */
+  background-color: white;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-width: 200px;
+  max-width: 900px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  box-sizing: border-box; // Include il padding nella larghezza dell'elemento
+  height: 100%; // Assicura che il container riempia l'altezza disponibile
+  overflow: hidden; // Aggiungi questa linea per evitare overflow non desiderato
+  position: relative; // Aggiungi questa linea per assicurare che il titolo sticky funzioni correttamente
 }
 
 .users-container {
+  max-height: calc((100vh - 60px - 25px * 3) / 2); /* Calcola l'altezza massima per ciascun container tenendo conto del padding e dei gap */
   grid-area: users; /* Assegna questa sezione all'area "users" della griglia */
   overflow-y: auto; /* Permette lo scorrimento verticale */
+  height: 100%;
+  position: relative; /* Necessario per il posizionamento sticky */
 }
 
 .documents-container {
+  max-height: calc((100vh - 60px - 25px * 3) / 2); /* Calcola l'altezza massima per ciascun container tenendo conto del padding e dei gap */
   grid-area: documents; /* Assegna questa sezione all'area "documents" della griglia */
   overflow-y: auto; /* Permette lo scorrimento verticale */
+  height: 100%;
+  position: relative; /* Necessario per il posizionamento sticky */
 }
 
 .add_schedule-container {
   grid-area: schedule; /* Assegna questa sezione all'area "schedule" della griglia */
+  height: 100%;
 }
 
 .add_documents-container {
   grid-area: documents-add; /* Assegna questa sezione all'area "documents-add" della griglia */
-  overflow-y: auto; /* Permette lo scorrimento verticale */
-}
-
-.add_schedule-container mat-form-field, .add_documents-container mat-form-field {
-  width: 640px; /* Imposta la larghezza al 100% */
-  height: 68px;
-  font-size: 12px; /* Imposta la dimensione del font */
-  margin-left: 30px;
-  margin-right: 10px;
-}
-
-.add_documents-container button, .add_schedule-container button {
-  font-size: 13px;
-  margin-right: 30px;
+  height: 100%;
 }
 
 .scegliFile {
-  margin-left: 30px;
-  background-color: #f4f4f4;
-  border-radius: 4px;
-  margin-right: 180px;
-  margin-bottom: 10px;
+  background-color: lightgray;
+  border-radius: 5px;
 }
 
 .admin-grid {
@@ -81,35 +94,26 @@
     "schedule documents-add"; /* Definisce la disposizione delle aree della griglia */
 }
 
-.sticky-title {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: transparent;
-  z-index: 10;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 240px;
-  width: 200px;
-}
-
-.admin-container h2 {
-  font-size: 18px; /* Riduce la dimensione del font */
-  margin-top: 0;
-  margin-bottom: 10px; /* Riduce il margine inferiore */
+.admin-container h1 {
+  font-size: 1.5em;
   text-align: center;
+  position: sticky; /* Mantiene il titolo fisso */
+  top: 0; /* Mantiene il titolo in cima */
+  background-color: white; /* Colore di sfondo per coprire gli elementi sottostanti */
+  z-index: 10; /* Assicura che il titolo sia sopra gli altri elementi */
+  padding: 10px 0; /* Padding per aggiungere spazio attorno al titolo */
+  margin: 0; /* Rimuove il margine */
+  border-bottom: 1px solid #ccc; /* Aggiunge un bordo inferiore per separare il titolo dagli elementi scrollabili */
 }
 
 .user-item, .document-item {
   cursor: pointer;
   padding-left: 20px;
   padding-right: 20px;
-  margin-left: 30px;
   margin: 10px;
-  margin-right: 30px;
-  border: 2px solid #ccc; /* Riduce lo spessore del bordo */
+  border: 1px solid gray; /* Riduce lo spessore del bordo */
   border-radius: 10px; /* Arrotonda gli angoli dell'elemento */
-  background-color: #e0e0e0;
+  background-color: lightgray;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -128,17 +132,17 @@
 }
 
 .bottone_cestino {
-  color: red;
+  color: #d9534f;
   height: 30px; /* Imposta un'altezza adeguata per i pulsanti */
   width: 30px; /* Imposta una larghezza adeguata per i pulsanti */
   padding-top: 2px;
   padding-right: 0px;
   padding-left: 0px;
   padding-bottom: 0px;
-  }
+}
 
 .info-button:hover {
-  background-color: #a4a6b3; /* Cambia il colore di sfondo quando si passa sopra l'elemento */
+  background-color: #7a8da1; /* Cambia il colore di sfondo quando si passa sopra l'elemento */
 }
 
 .bottone_cestino:hover {
@@ -146,7 +150,7 @@
 }
 
 .user-item:hover, .document-item:hover {
-  background-color: #e0e0e0; /* Cambia il colore di sfondo quando si passa sopra l'elemento */
+  background-color: lightgray; /* Cambia il colore di sfondo quando si passa sopra l'elemento */
   cursor: auto;
 }
 
@@ -169,65 +173,110 @@ button {
 
 .success-message {
   color: green; /* Imposta il colore del testo a verde */
-  margin-top: 10px; /* Aggiunge un margine superiore di 10px */
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .error-message {
-  color: red; /* Imposta il colore del testo a rosso */
-  margin-top: 10px; /* Aggiunge un margine superiore di 10px */
-}
-
-@media (max-width: 600px) {
-  .admin-grid {
-    grid-template-columns: 1fr; /* Imposta una sola colonna */
-    grid-template-rows: repeat(4, auto); /* Imposta quattro righe automatiche */
-  }
-
-  .admin-container {
-    width: 100%; /* Imposta la larghezza al 100% */
-    padding: 10px; /* Aggiunge un padding di 10px */
-  }
-
-  .admin-container h2 {
-    font-size: 20px; /* Riduce la dimensione del font a 20px */
-    margin-bottom: 10px; /* Riduce il margine inferiore a 10px */
-  }
-
-  .section {
-    padding: 10px; /* Aggiunge un padding di 10px */
-  }
+  color: #d9534f;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 /* Custom scrollbar styles */
 .users-container::-webkit-scrollbar, 
-.documents-container::-webkit-scrollbar, 
-.add_documents-container::-webkit-scrollbar,
-.add_schedule-container::-webkit-scrollbar {
-  width: 12px; /* Imposta la larghezza della scrollbar a 12px */
+.documents-container::-webkit-scrollbar {
+  width: 10px; /* Imposta la larghezza della scrollbar a 12px */
 }
 
 .users-container::-webkit-scrollbar-track, 
-.documents-container::-webkit-scrollbar-track, 
-.add_documents-container::-webkit-scrollbar-track,
-.add_schedule-container::-webkit-scrollbar-track {
+.documents-container::-webkit-scrollbar-track{
   border-radius: 10px; /* Arrotonda gli angoli del track della scrollbar */
   background: #f1f1f1; /* Imposta il colore di sfondo del track a grigio chiaro */
 }
 
 .users-container::-webkit-scrollbar-thumb, 
-.documents-container::-webkit-scrollbar-thumb, 
-.add_documents-container::-webkit-scrollbar-thumb,
-.add_schedule-container::-webkit-scrollbar-thumb {
+.documents-container::-webkit-scrollbar-thumb {
   border-radius: 10px; /* Arrotonda gli angoli del thumb della scrollbar */
   background: #888; /* Imposta il colore di sfondo del thumb a grigio */
 }
 
 .users-container::-webkit-scrollbar-thumb:hover, 
-.documents-container::-webkit-scrollbar-thumb:hover, 
-.add_documents-container::-webkit-scrollbar-thumb:hover,
-.add_schedule-container::-webkit-scrollbar-thumb:hover {
+.documents-container::-webkit-scrollbar-thumb:hover {
   background: #555; /* Scurisce il colore del thumb quando si passa sopra */
 }
+
+/* Media query per schermi piccoli */
+@media (max-width: 768px) {
+
+  body{
+    overflow-y: auto;
+  }
+  .admin-grid {
+    grid-template-columns: 1fr; /* Imposta una sola colonna */
+    grid-template-rows: auto; /* Imposta righe automatiche */
+    gap: 15px; /* Riduce lo spazio tra le celle della griglia */
+    scale: 0.8;
+    padding: 10px;
+    grid-template-areas: 
+      "users"
+      "documents"
+      "schedule"
+      "documents-add"; /* Definisce la disposizione delle aree della griglia */
+  }
+
+  .admin-container {
+    width: 100%; /* Imposta la larghezza al 100% */
+    padding: 10px; /* Aggiunge un padding di 10px */
+    max-width: none; /* Rimuove la larghezza massima */
+  }
+
+  .admin-container h1 {
+    font-size: 1.2em; /* Riduce la dimensione del font */
+    padding: 5px 0; /* Riduce il padding */
+  }
+
+  .users-container, .documents-container {
+    max-height: 200px; /* Imposta una altezza massima appropriata per il contenitore */
+    overflow-y: auto; /* Permette lo scorrimento verticale */
+  }
+
+  .add_schedule-container, .add_documents-container {
+    max-height: none; /* Rimuove l'altezza massima */
+    height: auto; /* Imposta l'altezza automatica */
+  }
+
+  .user-item, .document-item {
+    font-size: 14px; /* Riduce la dimensione del font */
+    padding: 10px; /* Riduce il padding */
+    margin: 5px; /* Riduce il margine */
+  }
+
+  .divider {
+    margin: 10px 0; /* Riduce il margine verticale */
+  }
+
+  .confirm-delete-dialog {
+    padding: 10px; /* Riduce il padding */
+    max-width: 300px; /* Riduce la larghezza massima */
+  }
+
+  .confirm-delete-dialog h2 {
+    font-size: 18px; /* Riduce la dimensione del font */
+    margin-bottom: 10px; /* Riduce il margine inferiore */
+  }
+
+  .confirm-delete-dialog p {
+    font-size: 14px; /* Riduce la dimensione del font */
+    margin-bottom: 10px; /* Riduce il margine inferiore */
+  }
+
+  .dialog-actions button {
+    font-size: 12px; /* Riduce la dimensione del font */
+    margin: 0 5px; /* Riduce il margine */
+  }
+}
+
 
 .confirm-delete-dialog {
   background-color: white; /* Imposta il colore di sfondo a bianco */
@@ -280,3 +329,4 @@ button {
   text-align: center;
   margin-top: 20px;
 }
+

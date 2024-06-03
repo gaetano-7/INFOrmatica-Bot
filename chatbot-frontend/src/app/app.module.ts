@@ -6,8 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoute } from './app.routes';
 import { HeaderComponent } from './components/header/header.component';
-import { MessagePanelComponent } from './components/message-panel/message-panel.component';
-import { UserInputComponent } from './components/user-input/user-input.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,8 +27,6 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     AppComponent,
     HeaderComponent,
-    MessagePanelComponent,
-    UserInputComponent,
     ChatbotComponent,
     RegisterComponent,
     LoginComponent,

@@ -2,7 +2,7 @@
 <body>
   <div class="admin-grid">
     <div class="admin-container users-container">
-      <h2 class="sticky-title">Utenti</h2>
+      <h1>Utenti</h1>
       <div *ngIf="usersSuccessMessage" class="success-message">{{ usersSuccessMessage }}</div>
       <div *ngIf="usersErrorMessage" class="error-message">{{ usersErrorMessage }}</div>
       <div *ngIf="users.length === 0" class="no-data-message">Nessun utente registrato</div>
@@ -15,7 +15,7 @@
     </div>
 
     <div class="admin-container documents-container">
-      <h2 class="sticky-title">Documenti</h2>
+      <h1>Documenti</h1>
       <div *ngIf="documentsSuccessMessage" class="success-message">{{ documentsSuccessMessage }}</div>
       <div *ngIf="documentsErrorMessage" class="error-message">{{ documentsErrorMessage }}</div>
       <div *ngIf="documents.length === 0" class="no-data-message">Nessun documento caricato</div>
@@ -28,7 +28,7 @@
     </div>  
 
     <div class="admin-container add_schedule-container">
-      <h2 class="sticky-title">Aggiungi Orario</h2>
+      <h1>Aggiungi Orario</h1>
       <div *ngIf="scheduleSuccessMessage" class="success-message">{{ scheduleSuccessMessage }}</div>
       <div *ngIf="scheduleErrorMessage" class="error-message">{{ scheduleErrorMessage }}</div>
       <form (ngSubmit)="onSubmit()">
@@ -59,7 +59,7 @@
        
 
     <div class="admin-container add_documents-container">
-      <h2 class="sticky-title">Aggiungi Documenti</h2>
+      <h1>Aggiungi Documenti</h1>
       <div *ngIf="addDocumentsSuccessMessage" class="success-message">{{ addDocumentsSuccessMessage }}</div>
       <div *ngIf="addDocumentsErrorMessage" class="error-message">{{ addDocumentsErrorMessage }}</div>
       <form>
@@ -81,7 +81,7 @@
 
   <ng-template #confirmDeleteDialog let-data>
     <div class="confirm-delete-dialog">
-      <h2>Conferma Eliminazione</h2>
+      <h1>Conferma Eliminazione</h1>
       <p>Sei sicuro di voler eliminare il documento "<span class="document-name">{{ data.name }}</span>"?</p>
       <div class="dialog-actions">
         <button mat-raised-button color="warn" (click)="deleteDocument(data.name)">Si</button>
