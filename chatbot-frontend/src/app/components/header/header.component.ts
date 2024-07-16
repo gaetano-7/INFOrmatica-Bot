@@ -3,6 +3,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { faSignInAlt, faUserPlus, faUser, faSignOutAlt, faBars, faCommentDots, faUserShield } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,14 @@ export class HeaderComponent {
   @ViewChild('loginPromptDialog') loginPromptDialogTemplate!: TemplateRef<any>;
   logoutDialogRef!: MatDialogRef<any>;
   loginPromptDialogRef!: MatDialogRef<any>;
+
+  faSignInAlt = faSignInAlt;
+  faUserPlus = faUserPlus;
+  faUser = faUser;
+  faSignOutAlt = faSignOutAlt;
+  faBars = faBars;
+  faCommentDots = faCommentDots;
+  faUserShield = faUserShield;
 
   constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) { }
 
@@ -42,7 +51,7 @@ export class HeaderComponent {
 
   onChatbotClick(): void {
     if (this.isLoggedIn()) {
-      this.router.navigate(['/chatbot']);
+      this.router.navigate(['/chat-choice']);
     } else {
       this.openLoginPromptDialog();
     }

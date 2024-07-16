@@ -1,85 +1,85 @@
 :host {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin: 0 auto;
-  padding-top: 60px;
-  width: 100%;
+  justify-content: center; // Centro il contenitore orizzontalmente
+  align-items: center; // Centro il contenitore verticalmente
+  height: 100vh; // Faccio in modo che il contenitore occupi tutta l'altezza della viewport
+  padding-top: 60px; // Padding superiore per fare spazio all'header
   box-sizing: border-box;
+  background: linear-gradient(135deg, #b71918, #ff7961);
+  background-size: cover;
+  background-position: center;
 
   @media (max-width: 768px) {
-    padding-top: 50px; // Riduci il padding superiore sui dispositivi più piccoli
+    padding-top: 50px;
   }
 
   @media (max-width: 480px) {
-    padding-top: 40px; // Riduci ulteriormente il padding superiore sui dispositivi più piccoli
+    padding-top: 40px;
   }
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-size: cover;
-  background-position: center;
+  font-family: 'Roboto', Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px);
+  height: 100vh; // Altezza calcolata per tenere conto dell'header fisso
   overflow: hidden;
   padding: 0;
   backdrop-filter: blur(3px);
-  background-color: lightgray;
 
   @media (max-width: 768px) {
-    height: calc(100vh - 50px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
+    height: calc(100vh - 50px);
   }
 
   @media (max-width: 480px) {
-    height: calc(100vh - 40px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
+    height: calc(100vh - 40px);
   }
 }
 
 .register-container {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
-  padding: 30px 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 40px 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 950px;
-  max-height: 580px;
+  max-width: 450px;
   box-sizing: border-box;
+  text-align: center;
 
   @media (max-width: 768px) {
-    padding: 20px 15px; // Riduci il padding sui dispositivi più piccoli
+    padding: 30px 20px;
     max-width: 90%;
   }
 
   @media (max-width: 480px) {
-    padding: 15px 10px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+    padding: 20px 15px;
     max-width: 95%;
-    max-height: none; // Rimuovi il limite di altezza sui dispositivi più piccoli
   }
 
   h1 {
-    font-size: 2em;
-    text-align: center;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
 
     @media (max-width: 768px) {
-      font-size: 1.8em; // Riduci la dimensione del font sui dispositivi più piccoli
+      font-size: 2em;
     }
 
     @media (max-width: 480px) {
-      font-size: 1.5em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+      font-size: 1.8em;
     }
   }
 
   p {
-    margin-top: 1rem;
-    text-align: center;
-    color: #777;
+    margin-top: 0;
+    color: #666;
+    font-size: 1em;
+    margin-bottom: 20px;
 
     @media (max-width: 480px) {
-      font-size: 0.9em; // Riduci la dimensione del font sui dispositivi più piccoli
+      font-size: 0.9em;
     }
   }
 
@@ -89,46 +89,63 @@ body {
 
     .row {
       display: flex;
-      justify-content: space-between;
-      gap: 20px;
+      flex-direction: row;
+      gap: 15px;
 
-      &.single {
+      @media (max-width: 768px) {
         flex-direction: column;
       }
 
       div {
         flex: 1;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        position: relative;
+
+        @media (max-width: 768px) {
+          margin-bottom: 12px;
+        }
+
+        @media (max-width: 480px) {
+          margin-bottom: 10px;
+        }
 
         label {
-          font-size: 1.2em;
+          font-size: 1em;
           display: block;
           margin-bottom: 0.5em;
           font-weight: bold;
+          color: #333;
 
           @media (max-width: 768px) {
-            font-size: 1em; // Riduci la dimensione del font sui dispositivi più piccoli
+            font-size: 0.9em;
           }
 
           @media (max-width: 480px) {
-            font-size: 0.9em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+            font-size: 0.8em;
           }
         }
 
         input {
           display: block;
           width: 100%;
-          padding: 10px;
+          padding: 12px;
           border: 1px solid #ccc;
-          border-radius: 4px;
+          border-radius: 10px;
           box-sizing: border-box;
+          font-size: 1em;
+          transition: border-color 0.3s;
+
+          &:focus {
+            border-color: #ff5f6d;
+            outline: none;
+          }
 
           @media (max-width: 768px) {
-            padding: 8px; // Riduci il padding sui dispositivi più piccoli
+            padding: 10px;
           }
 
           @media (max-width: 480px) {
-            padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+            padding: 8px;
           }
         }
       }
@@ -136,93 +153,40 @@ body {
 
     button {
       display: block;
-      margin-top: 10px;
+      margin-top: 20px;
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: none;
-      border-radius: 4px;
-      background-color: #3f51b5;
+      border-radius: 10px;
+      background-color: #ff5f6d;
       color: #fff;
-      font-size: 15px;
+      font-size: 1em;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #e14a4a;
+      }
 
       @media (max-width: 768px) {
-        padding: 8px; // Riduci il padding sui dispositivi più piccoli
-        font-size: 14px; // Riduci la dimensione del font sui dispositivi più piccoli
+        padding: 10px;
+        font-size: 0.9em;
       }
 
       @media (max-width: 480px) {
-        padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
-        font-size: 13px; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+        padding: 8px;
+        font-size: 0.8em;
       }
-    }
-
-    button:hover {
-      background-color: #5784b4;
     }
 
     .error {
       color: #d9534f;
-      margin-top: 1rem;
-      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9em;
 
       @media (max-width: 480px) {
-        font-size: 0.9em; // Riduci la dimensione del font sui dispositivi più piccoli
+        font-size: 0.8em;
       }
     }
-  }
-}
-
-/* Media Queries per la responsività */
-@media (max-width: 768px) {
-  .register-container {
-    padding: 20px 10px;
-  }
-
-  form .row {
-    flex-direction: column;
-
-    div {
-      margin-bottom: 8px;
-
-      label {
-        font-size: 0.9rem;
-      }
-
-      input {
-        padding: 8px;
-      }
-    }
-  }
-
-  button {
-    padding: 8px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .register-container {
-    padding: 15px 10px; // Riduci ulteriormente il padding sui dispositivi più piccoli
-  }
-
-  form .row {
-    div {
-      margin-bottom: 8px;
-
-      label {
-        font-size: 0.9rem; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
-      }
-
-      input {
-        padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
-      }
-    }
-  }
-
-  button {
-    padding: 6px; // Riduci ulteriormente il padding sui dispositivi più piccoli
-    font-size: 13px; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
   }
 }

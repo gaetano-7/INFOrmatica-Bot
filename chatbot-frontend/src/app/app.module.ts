@@ -22,12 +22,18 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AdminScreenComponent } from './components/admin-screen/admin-screen.component';
 import { ConfirmDeleteDialogComponent, UserDetailDialogComponent } from './components/user-detail-dialog/user-detail-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ChatbotVerifiedComponent } from './components/chatbot-verified/chatbot-verified.component';
+import { ChatChoiceComponent } from './components/chat-choice/chat-choice.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ChatbotComponent,
+    ChatbotVerifiedComponent,
+    ChatChoiceComponent,
     RegisterComponent,
     LoginComponent,
     UserDetailDialogComponent,
@@ -51,6 +57,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSelectModule,
     MatFormFieldModule,
     MatButtonModule,
+    FontAwesomeModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([])
   ],

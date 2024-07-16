@@ -1,0 +1,18 @@
+<div class="chat-choice-container">
+  <h1>Seleziona la modalità di chat</h1>
+  <div class="chat-options">
+    <div class="chat-option" (click)="selectChatMode('ai')">
+      <fa-icon [icon]="faRobot" size="4x"></fa-icon>
+      <h2>Chat con AI</h2>
+      <p>Ricevi risposte immediate generate da un'intelligenza artificiale.</p>
+      <p>Perfetto per risposte rapide e conversazioni fluide.</p>
+    </div>
+    <div class="chat-option" (click)="selectChatMode('ai-verified')">
+      <fa-icon [icon]="faUserCheck" size="4x"></fa-icon>
+      <h2>Chat con AI e verifica umana</h2>
+      <p>Le risposte sono generate da un'AI ma verificate da un umano.</p>
+      <p>Questa modalità impiega più tempo a rispondere a causa della verifica.</p>
+      <p>Ideale per risposte più accurate e controllate.</p>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,3 @@
-//home.component.ts
 import { Router } from '@angular/router';
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -21,14 +20,16 @@ export class HomeComponent {
 
   onChatbotClick(): void {
     if (this.isLoggedIn()) {
-      this.router.navigate(['/chatbot']);
+      this.router.navigate(['/chat-choice']);
     } else {
       this.openLoginPromptDialog();
     }
   }
 
   openLoginPromptDialog(): void {
-    this.loginPromptDialogRef = this.dialog.open(this.loginPromptDialogTemplate);
+    this.loginPromptDialogRef = this.dialog.open(this.loginPromptDialogTemplate, {
+      disableClose: false // Permette di chiudere il dialogo cliccando fuori
+    });
   }
 
   closeLoginPromptDialog(): void {

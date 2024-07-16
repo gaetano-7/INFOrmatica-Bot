@@ -1,0 +1,25 @@
+<div class="chat-container">
+    <div #scrollframe class="message-container">
+      <div *ngFor="let msg of messages; trackBy: trackByMessageId" class="message" [ngClass]="{'user-message': msg.sender === 'USER', 'assistant-message': msg.sender === 'ASSISTANT'}">
+        <img *ngIf="msg.sender === 'USER'" [src]="userPath" alt="User" class="avatar">
+        <img *ngIf="msg.sender === 'ASSISTANT'" [src]="avatarPath" alt="Assistant" class="avatar">
+        <div class="message-content">
+          <p>{{msg.content}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <input [(ngModel)]="message" (keyup)="onKeyUp($event)" placeholder="Type your message...">
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+  
+  <ng-template #confirmDeleteDialog>
+    <h1 mat-dialog-title>Confirm Deletion</h1>
+    <div mat-dialog-content>Are you sure you want to delete all messages?</div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="closeDialog()">No</button>
+      <button mat-button (click)="confirmDelete()">Yes</button>
+    </div>
+  </ng-template>
+  

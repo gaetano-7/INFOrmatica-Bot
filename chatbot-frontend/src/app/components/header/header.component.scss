@@ -1,7 +1,6 @@
-//header.component.scss
 .header-outer-container {
   background-color: #b71918;
-  padding: 5px 20px;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,7 +9,9 @@
   width: 100%;
   z-index: 1000;
   box-sizing: border-box;
-  height: 60px; // Specifica l'altezza dell'header
+  height: 60px;
+  border-bottom: 2px solid #b71918;
+  transition: background-color 0.3s ease, height 0.3s ease;
 
   @media (max-width: 768px) {
     padding: 5px 10px;
@@ -19,7 +20,12 @@
   @media (max-width: 480px) {
     padding: 5px 5px;
     height: auto;
-    flex-direction: row; // Mantieni il layout in riga
+    flex-direction: row;
+  }
+
+  &:hover {
+    background-color: #a31717;
+    height: 70px;
   }
 }
 
@@ -27,26 +33,38 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
   .logo {
-    height: 50px;
+    height: 70px;
     margin-right: 10px;
+    border-radius: 10px;
 
     @media (max-width: 480px) {
       height: 40px;
       margin-right: 5px;
     }
   }
-
 }
 
 .icons-container {
   display: flex;
   align-items: center;
   
+
   button.mat-icon-button {
     color: #ffffff;
     margin-left: 15px;
+    font-size: 2rem;  /* Increase icon size */
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.2);
+    }
 
     @media (max-width: 480px) {
       margin-left: 10px;
@@ -61,8 +79,14 @@
       border: none;
       color: #ffffff;
       cursor: pointer;
-      padding: 0; // Assicurati che non ci sia padding extra che possa causare overflow
-      margin-right: 10px; // Aggiungi un piccolo margine a destra per evitare che l'icona venga tagliata
+      padding: 0;
+      margin-right: 10px;
+      font-size: 2rem;  /* Increase icon size */
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: rotate(90deg);
+      }
 
       @media (max-width: 480px) {
         margin-right: 5px;
@@ -76,78 +100,90 @@
       background-color: #ffffff;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       z-index: 1;
-      min-width: 150px;
-      border-radius: 4px;
+      min-width: 200px;  /* Increase width */
+      border-radius: 10px;
       overflow: hidden;
       cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 
       @media (max-width: 480px) {
-        min-width: 120px;
+        min-width: 160px;
       }
 
       a {
         display: flex;
         align-items: center;
-        padding: 10px;
+        padding: 15px;  /* Increase padding */
         color: #333;
         text-decoration: none;
-        transition: background 0.3s;
+        transition: background 0.3s, color 0.3s;
 
-        mat-icon {
+        fa-icon {
           margin-right: 10px;
         }
 
         &:hover {
           background-color: #f1f1f1;
+          color: #b71918;  /* Change color on hover */
         }
       }
+    }
+
+    &:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
   }
 }
 
-.dropdown-menu {
-  display: none;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-
-.logout-dialog, .login-prompt-dialog {
-  background-color: white; /* Imposta il colore di sfondo a bianco */
-  padding: 40px; /* Aggiunge padding di 20px */
-  border-radius: 8px; /* Arrotonda gli angoli del contenitore */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aggiunge un'ombra */
-  max-width: 400px; /* Imposta la larghezza massima del dialog */
-  margin: auto; /* Centra il dialog */
+.login-prompt-dialog {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  margin: auto;
 
   @media (max-width: 768px) {
-    padding: 30px;
+    padding: 20px;
     max-width: 90%;
   }
 
   @media (max-width: 480px) {
-    padding: 20px;
+    padding: 15px;
     max-width: 95%;
   }
 }
 
-.logout-dialog, .login-prompt-dialog h2 {
-  font-size: 20px; /* Imposta la dimensione del font */
-  margin-top: 0; /* Rimuove il margine superiore */
-  margin-bottom: 20px; /* Aggiunge un margine inferiore */
-  text-align: center; /* Centra il testo */
+.login-prompt-dialog h2 {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
 
   @media (max-width: 480px) {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 
-.logout-dialog, .login-prompt-dialog p {
-  font-size: 15px; /* Imposta la dimensione del font */
-  margin-bottom: 0px; /* Aggiunge un margine inferiore */
-  text-align: center; /* Centra il testo */
+.login-prompt-dialog p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #666;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 
   @media (max-width: 480px) {
     font-size: 14px;
@@ -155,9 +191,9 @@
 }
 
 .dialog-actions {
-  display: flex; /* Imposta l'elemento come un flex container */
-  justify-content: space-between; /* Spazia gli elementi figli in modo uniforme */
-  margin-top: 20px; /* Aggiunge un margine superiore */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 
   @media (max-width: 480px) {
     flex-direction: column;
@@ -166,11 +202,12 @@
 }
 
 .dialog-actions button {
-  flex: 1; /* Permette ai pulsanti di crescere uniformemente */
-  margin: 0 10px; /* Aggiunge un margine orizzontale */
-  font-size: 14px; /* Imposta la dimensione del font */
+  flex: 1;
+  margin: 0 10px;
+  font-size: 14px;
 
   @media (max-width: 480px) {
     margin: 10px 0;
+    font-size: 13px;
   }
 }

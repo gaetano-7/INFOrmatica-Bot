@@ -1,66 +1,60 @@
-<!-- register.component.html -->
-<!DOCTYPE html>
-<html lang="it" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title class="title">Registrati!</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
 <div class="register-container">
     <div class="header">
-        <h1>Registrati</h1>
-        <p>Crea subito un account per iniziare a chattare!</p>
+      <h1>Registrati</h1>
+      <p>Crea subito un account per iniziare a chattare!</p>
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-            <div>
-                <label for="first_name">Nome</label>
-                <input id="first_name" formControlName="first_name" type="text" placeholder="es. Mario" required>
-                <div *ngIf="registerForm.get('first_name')?.invalid && registerForm.get('first_name')?.touched" class="error">
-                    Inserisci il tuo nome
-                </div>
-            </div>
-            <div>
-                <label for="last_name">Cognome</label>
-                <input id="last_name" formControlName="last_name" type="text" placeholder="es. Rossi" required>
-                <div *ngIf="registerForm.get('last_name')?.invalid && registerForm.get('last_name')?.touched" class="error">
-                    Inserisci il tuo cognome
-                </div>
-            </div>
-        </div>
-        <div class="row single">
-            <div>
-                <label for="email">Email</label>
-                <input id="email" formControlName="email" type="email" placeholder="es. mario.rossi@gmail.com">
-                <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
-                    Inserisci un'e-mail valida
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div>
-                <label for="username">Username</label>
-                <input id="username" formControlName="username" type="text" placeholder="es. mario.rossi" required>
-                <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="error">
-                    Inserisci un username
-                </div>
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input id="password" formControlName="password" type="password" placeholder="La tua password" required>
-                <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
-                    Inserisci una password
-                </div>
-            </div>
+      <div class="row">
+        <div>
+          <label for="first_name">Nome</label>
+          <input id="first_name" formControlName="first_name" type="text" placeholder="es. Mario" required>
+          <div *ngIf="registerForm.get('first_name')?.invalid && registerForm.get('first_name')?.touched" class="error">
+            Inserisci il tuo nome
+          </div>
         </div>
         <div>
-            <button mat-raised-button color="primary" type="submit" [disabled]="loading">Registrati</button>
+          <label for="last_name">Cognome</label>
+          <input id="last_name" formControlName="last_name" type="text" placeholder="es. Rossi" required>
+          <div *ngIf="registerForm.get('last_name')?.invalid && registerForm.get('last_name')?.touched" class="error">
+            Inserisci il tuo cognome
+          </div>
         </div>
-        <div *ngIf="error" class="error">
-            {{ error }}
+      </div>
+      <div class="row single">
+        <div>
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" type="email" placeholder="es. mario.rossi@gmail.com" required>
+          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
+            Inserisci un'e-mail valida
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="username">Username</label>
+          <input id="username" formControlName="username" type="text" placeholder="es. mario.rossi" required>
+          <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="error">
+            Inserisci un username
+          </div>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" formControlName="password" type="password" placeholder="La tua password" required>
+          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
+            Inserisci una password
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <button class="register-button" type="submit" [disabled]="loading">
+            <span>✍ Registrati</span>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="error" class="error">
+        {{ error }}
+      </div>
     </form>
-</div>
-</body>
-</html>
+  </div>
+  

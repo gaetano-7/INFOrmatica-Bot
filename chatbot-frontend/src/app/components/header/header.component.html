@@ -1,48 +1,47 @@
-<!-- header.component.html -->
 <div class="header-outer-container">
   <div class="header-container" routerLink="/home">
     <img src="../../assets/logo.png" alt="Logo" class="logo" />
   </div>
   <div class="icons-container">
     <button mat-icon-button (click)="onChatbotClick()">
-      <mat-icon>chat</mat-icon>
+      <fa-icon [icon]="faCommentDots"></fa-icon>
     </button>
     <div class="dropdown">
       <button class="dropdown-toggle">
-        <mat-icon>menu</mat-icon>
+        <fa-icon [icon]="faBars"></fa-icon>
       </button>
       <div class="dropdown-menu">
         <ng-container *ngIf="!isLoggedIn()">
           <a routerLink="/login">
-            <mat-icon>login</mat-icon>
+            <fa-icon [icon]="faSignInAlt"></fa-icon>
             Login
           </a>
           <a routerLink="/register">
-            <mat-icon>how_to_reg</mat-icon>
+            <fa-icon [icon]="faUserPlus"></fa-icon>
             Registrati
           </a>
         </ng-container>
         <ng-container *ngIf="isLoggedIn() && !isAdmin()">
           <a routerLink="/profile">
-            <mat-icon>account_circle</mat-icon>
+            <fa-icon [icon]="faUser"></fa-icon>
             Profilo
           </a>
           <a (click)="openLogoutDialog()">
-            <mat-icon>logout</mat-icon>
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
             Logout
           </a>
         </ng-container>
         <ng-container *ngIf="isLoggedIn() && isAdmin()">
           <a routerLink="/admin">
-            <mat-icon>admin_panel_settings</mat-icon>
+            <fa-icon [icon]="faUserShield"></fa-icon>
             Admin
           </a>
           <a routerLink="/profile">
-            <mat-icon>account_circle</mat-icon>
+            <fa-icon [icon]="faUser"></fa-icon>
             Profilo
           </a>
           <a (click)="openLogoutDialog()">
-            <mat-icon>logout</mat-icon>
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
             Logout
           </a>
         </ng-container>
@@ -63,14 +62,13 @@
   </div>
 </ng-template>
 
-
 <ng-template #loginPromptDialog>
   <div class="login-prompt-dialog">
     <h2>Registrazione necessaria</h2>
     <p>Per utilizzare il chatbot, è necessario registrarsi o effettuare il login.</p>
-    <div class="mat-dialog-actions">
-      <button mat-raised-button color="primary" class="login-button" (click)="goToLogin()" cdkFocusInitial>Vai al login</button>
-      <button mat-raised-button class="close-button" (click)="closeLoginPromptDialog()">Chiudi</button>
+    <div class="dialog-actions">
+      <button mat-button class="login-button" color="primary" (click)="goToLogin()" cdkFocusInitial>Vai al login</button>
+      <button mat-button class="close-button" (click)="closeLoginPromptDialog()">Chiudi</button>
     </div>
   </div>
 </ng-template>
