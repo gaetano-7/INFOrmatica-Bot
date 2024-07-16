@@ -1,6 +1,7 @@
 #app/services/anythingLLM.py
 import requests
 import json
+from datetime import datetime
 from fastapi import UploadFile
 
 def create_user(API_KEY, USERNAME, PASSWORD):
@@ -116,8 +117,9 @@ def question(message, API_KEY):
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"'
     }
+    current_date = datetime.now()
     data = {
-        'message': message
+        'message': f"date: {current_date}, question: {message}"
     }
 
     response = requests.post(url, headers=headers, json=data)
