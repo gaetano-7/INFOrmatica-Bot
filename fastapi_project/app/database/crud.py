@@ -1,8 +1,7 @@
-#app/database/crud.py
 from sqlalchemy.orm import Session
 from app.routes import schemas
 from passlib.context import CryptContext
-from app.database.models import User, Schedule
+from app.database.models import User, Schedule, ChatVerified
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -69,3 +68,24 @@ def get_schedule_by_details(db: Session, course_name: str, room: str, teacher_na
         Schedule.start_time == start_time,
         Schedule.end_time == end_time
     ).first()
+
+def create_chat_verified(db: Session, user_id: int, question: str, ai_response: str):
+    db_response = ChatVerified(user_id=user_id, question=question, ai_response=ai_response)
+    db.add(db_response)
+    db.commit()
+    db.refresh(db_response)
+    return db_response
+
+def get_chat_verified(db: Session, response_id: int):
+    return db.query(ChatVerified).filter(ChatVerified.id == response_id).first()
+
+def update_verified_response(db: Session, response_id: int, verified_response: str):
+    response = db.query(ChatVerified).filter(ChatVerified.id == response_id).first()
+    if response:
+        response.verified_response = verified_response
+        db.commit()
+        db.refresh(response)
+    return response
+
+def get_chat_verified_by_user_id(db: Session, user_id: int):
+    return db.query(ChatVerified).filter(ChatVerified.user_id == user_id).all()

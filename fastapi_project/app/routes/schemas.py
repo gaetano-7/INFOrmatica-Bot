@@ -26,6 +26,11 @@ class QuestionRequest(BaseModel):
     message: str
     api_key: str
 
+class QuestionVerifiedRequest(BaseModel):
+    user_id: int
+    message: str
+    api_key: str
+
 class DeleteWorkspaceChatRequest(BaseModel):
     chat_id: int
     api_key: str

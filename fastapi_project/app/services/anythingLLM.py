@@ -123,8 +123,11 @@ def question(message, API_KEY):
     }
 
     response = requests.post(url, headers=headers, json=data)
+    ai_response = response.text
+    parsed_response = parse_response(ai_response)
 
-    return response.text
+    return parsed_response
+
 
 def get_chat_history(API_KEY):
     url = "http://localhost:3001/api/v1/workspace/informatica-bot/chats"
@@ -313,4 +316,23 @@ def remove_document(api_key, document_path):
     
     return "True"
 
-#remove_document("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwidXNlcm5hbWUiOiJnYWV0YW5vX2FkbWluIiwiaWF0IjoxNzE2OTc1MjI1LCJleHAiOjE3MTk1NjcyMjV9.lATfdlYQDyQps6j-RbkqQolQvMvy1TtmMn_VZQa1hhg","ACMILAN-PARISSAINTGERMAIN_12_154_5_29_LAROCCA_000800053223735_1.pdf-5a8c9e0a-dd22-475f-817c-bc8e9014f65e.json")
+def parse_response(response: str) -> str:
+    parts = response.split('\n\n')
+    combined_response = ''
+
+    for part in parts:
+        if part.startswith('data: '):
+            json_string = part[6:].strip()
+            if json_string:
+                try:
+                    json_data = json.loads(json_string)
+                    if 'textResponse' in json_data:
+                        combined_response += json_data['textResponse']
+                    else:
+                        print(f'No textResponse in JSON: {json_data}')
+                except json.JSONDecodeError as error:
+                    print(f'Error parsing response part: {json_string}', error)
+            else:
+                print(f'Empty JSON string: {part}')
+
+    return combined_response

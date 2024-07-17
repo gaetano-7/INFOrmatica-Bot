@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, TemplateRef, ElementRef, Input } from '@a
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Message, MESSAGE_TYPE } from '../../utility/constants';
 import { v4 as uuidv4 } from 'uuid';
-import { AnythingLLMService } from '../../services/anythingLLM.services';
 import { switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
@@ -11,8 +10,7 @@ const ENTER_KEY_ASCII = 13;
 @Component({
   selector: 'app-chatbot-verified',
   templateUrl: './chatbot-verified.component.html',
-  styleUrls: ['./chatbot-verified.component.scss'],
-  providers: [AnythingLLMService]
+  styleUrls: ['./chatbot-verified.component.scss']
 })
 export class ChatbotVerifiedComponent implements OnInit {
   private _messages: Message[] = [];
@@ -30,7 +28,6 @@ export class ChatbotVerifiedComponent implements OnInit {
   @ViewChild('scrollframe', { static: true }) scrollFrame!: ElementRef;
 
   constructor(
-    private anythingLLMService: AnythingLLMService,
     private dialog: MatDialog
   ) {}
 
@@ -39,7 +36,7 @@ export class ChatbotVerifiedComponent implements OnInit {
       this.getMessage(this.message);
       this.message = "";
     }
-  }  
+  }
 
   onKeyUp($event: any) {
     if ($event.which === ENTER_KEY_ASCII) {
@@ -96,29 +93,17 @@ export class ChatbotVerifiedComponent implements OnInit {
       this.loading = true;
       this.saveConversation();
 
-      const user_token = localStorage.getItem('llm_token');
+      // Show confirmation message to user
+      const confirmationMessage = "La tua domanda è stata correttamente inviata. La segreteria risponderà entro 5-10 minuti.";
+      messageObject = this.createMessage(confirmationMessage, MESSAGE_TYPE.ASSISTANT);
+      this._messages = [...this._messages, messageObject];
+      this.loading = false;
+      this.saveConversation();
 
-      if (user_token) {
-        this.anythingLLMService.askQuestion($event, user_token).subscribe(
-          (response: any) => {
-            // Verifica umana
-            this.verifyResponse(response.response).then((verifiedResponse) => {
-              const assistantMessage = this.parseResponse(verifiedResponse);
-              messageObject = this.createMessage(assistantMessage, MESSAGE_TYPE.ASSISTANT);
-              this._messages = [...this._messages, messageObject];
-              this.loading = false;
-              this.saveConversation();
-            });
-          },
-          error => {
-            console.error('Error asking question:', error);
-            this.loading = false;
-          }
-        );
-      } else {
-        console.error('Token not found.');
-        this.loading = false;
-      }
+      // Simulate delay and fetch the response from the database
+      setTimeout(() => {
+
+      }, 300000); // 5 minutes delay
     } else {
       let messageObject: Message = this.createMessage($event, MESSAGE_TYPE.USER);
       this._messages = [...this._messages, messageObject];
@@ -133,42 +118,6 @@ export class ChatbotVerifiedComponent implements OnInit {
       content: content,
       dateTime: new Date(),
     };
-  }
-
-  parseResponse(response: string): string {
-    const parts = response.split('\n\n');
-    let combinedResponse = '';
-
-    for (const part of parts) {
-      if (part.startsWith('data: ')) {
-        const jsonString = part.substring(6).trim();
-        if (jsonString) {
-          try {
-            const json = JSON.parse(jsonString);
-            if (json.textResponse) {
-              combinedResponse += json.textResponse;
-            } else {
-              console.warn('No textResponse in JSON:', json);
-            }
-          } catch (error) {
-            console.error('Error parsing response part:', jsonString, error);
-          }
-        } else {
-          console.warn('Empty JSON string:', part);
-        }
-      }
-    }
-
-    return combinedResponse;
-  }
-
-  verifyResponse(response: string): Promise<string> {
-    // Simulazione di una verifica umana della risposta
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(response);
-      }, 3000); // Simula un ritardo di verifica di 3 secondi
-    });
   }
 
   public debounce(func: Function, timeout = 400) {
@@ -192,16 +141,7 @@ export class ChatbotVerifiedComponent implements OnInit {
 
   private fetchConversationFromBackend() {
     if (this.apiKey) {
-      this.anythingLLMService.getConversation(this.apiKey).subscribe(
-        (response: any) => {
-          console.log('Conversation fetched:', response);
-          this._messages = [...this._messages, ...response];
-          this.saveConversation();
-        },
-        error => {
-          console.error('Error fetching conversation:', error);
-        }
-      );
+
     } else {
       console.error('Token not found.');
     }
@@ -221,21 +161,6 @@ export class ChatbotVerifiedComponent implements OnInit {
     const username = environment.usernameAdmin;
     const password = environment.passwordAdmin;
 
-    this.anythingLLMService.getToken(username, password).pipe(
-      switchMap(tokenData => {
-        const token = tokenData.token;
-        return this.anythingLLMService.deleteAllWorkspacesChat(token);
-      })
-    ).subscribe(
-      () => {
-        this._messages = [];
-        this.saveConversation();
-        this.closeDialog();
-      },
-      error => {
-        console.error('Error clearing conversation:', error);
-        this.closeDialog();
-      }
-    );
+    this.closeDialog();
   }
 }

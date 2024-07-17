@@ -102,7 +102,7 @@ export class ChatbotComponent implements OnInit {
       if (user_token) {
         this.anythingLLMService.askQuestion($event, user_token).subscribe(
           (response: any) => {
-            const assistantMessage = this.parseResponse(response.response);
+            const assistantMessage = response.response;
             messageObject = this.createMessage(assistantMessage, MESSAGE_TYPE.ASSISTANT);
             this._messages = [...this._messages, messageObject];
             this.loading = false;
@@ -131,33 +131,6 @@ export class ChatbotComponent implements OnInit {
       content: content,
       dateTime: new Date(),
     };
-  }
-
-  parseResponse(response: string): string {
-    const parts = response.split('\n\n');
-    let combinedResponse = '';
-
-    for (const part of parts) {
-      if (part.startsWith('data: ')) {
-        const jsonString = part.substring(6).trim();
-        if (jsonString) {
-          try {
-            const json = JSON.parse(jsonString);
-            if (json.textResponse) {
-              combinedResponse += json.textResponse;
-            } else {
-              console.warn('No textResponse in JSON:', json);
-            }
-          } catch (error) {
-            console.error('Error parsing response part:', jsonString, error);
-          }
-        } else {
-          console.warn('Empty JSON string:', part);
-        }
-      }
-    }
-
-    return combinedResponse;
   }
 
   public debounce(func: Function, timeout = 400) {

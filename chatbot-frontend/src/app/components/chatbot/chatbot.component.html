@@ -1,12 +1,15 @@
-<!--chatbot.component.html-->
 <body>
   <div class="chat-container">
     <div class="chat-header">
       <div class="header-left">
-        <div class="avatar" [ngStyle]="{'background-image': 'url(' + avatarPath + ')'}"></div>
-        <span class="assistant-name">Assistant</span>
+        <div class="avatar" [ngStyle]="{'background-image': 'url(' + avatarPath + ')'}">
+          <span class="status-indicator"></span>
+        </div>
+        <span class="assistant-name">AI Assistant</span>
       </div>
-      <button mat-raised-button color="warn" (click)="openConfirmDeleteDialog()">Elimina Chat</button>
+      <button class="delete-button" mat-raised-button color="warn" (click)="openConfirmDeleteDialog()">
+        <span class="material-icons">delete</span>
+      </button>
     </div>
 
     <section class="message-panel-container" #scrollframe>
@@ -28,7 +31,7 @@
       <div *ngIf="loading" class="loading-icon">
         <img src="../../assets/loading.svg" width="70" />
       </div>
-    
+
       <audio #audio src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3"></audio>
       <audio #audioToggle src="https://assets.mixkit.co/active_storage/sfx/2925/2925-preview.mp3"></audio>
     </section>
@@ -47,16 +50,20 @@
     </section>
   </div>
 
-  <audio #audio src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3"></audio>
-  <audio #audioToggle src="https://assets.mixkit.co/active_storage/sfx/2925/2925-preview.mp3"></audio>
-
   <ng-template #confirmDeleteDialog>
     <div class="confirm-delete-dialog">
-      <h2>Conferma Eliminazione</h2>
+      <div class="dialog-header">
+        <span class="material-icons warning-icon">warning</span>
+        <h2>Conferma Eliminazione</h2>
+      </div>
       <p>Sei sicuro di voler eliminare la chat?</p>
       <div class="dialog-actions">
-        <button mat-raised-button color="warn" (click)="confirmDelete()">Si</button>
-        <button mat-raised-button (click)="closeDialog()">No</button>
+        <button mat-raised-button color="warn" (click)="confirmDelete()">
+          <span class="material-icons">delete</span> Si
+        </button>
+        <button mat-raised-button (click)="closeDialog()">
+          <span class="material-icons">cancel</span> No
+        </button>
       </div>
     </div>
   </ng-template>

@@ -1,6 +1,7 @@
-# app/database/models.py
-from sqlalchemy import Column, Integer, String, DateTime, Enum
+from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey, Text
+from sqlalchemy.orm import relationship
 from app.database.config import Base
+from datetime import datetime
 import enum
 
 class Role(str, enum.Enum):
@@ -19,6 +20,8 @@ class User(Base):
     hashed_password = Column(String)
     role = Column(Enum(Role), default=Role.user)
 
+    chat_histories = relationship("ChatHistory", back_populates="user")
+
 class Schedule(Base):
     __tablename__ = 'schedules'
 
@@ -29,4 +32,13 @@ class Schedule(Base):
     start_time = Column(DateTime)
     end_time = Column(DateTime)
 
+class ChatVerified(Base):
+    __tablename__ = 'chat_verified'
 
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    question = Column(String)
+    ai_response = Column(String)
+    verified_response = Column(String, nullable=True)
+
+    user = relationship("User", back_populates="responses")
