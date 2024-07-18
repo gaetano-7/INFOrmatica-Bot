@@ -91,6 +91,20 @@ export class AnythingLLMService {
     );
   }
   
+  askVerifiedQuestion(message: string, user_id: string, api_key: string): Observable<any> {
+    const url = `${environment.apiUrl}/anythingLLM/question_verified`;
+    const body = { user_id, message, api_key };
+    return this.http.post(url, body).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getVerifiedConversation(user_id: string): Observable<any> {
+    const url = `${environment.apiUrl}/anythingLLM/get_chat_verified_by_user_id`;
+    return this.http.get(url, { params: { user_id } }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(error: any) {
     console.error('An error occurred', error);

@@ -1,7 +1,8 @@
+# app/database/crud.py
 from sqlalchemy.orm import Session
 from app.routes import schemas
 from passlib.context import CryptContext
-from app.database.models import User, Schedule, ChatVerified
+from app.database.models import User, Schedule, ChatVerified 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -9,7 +10,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 def create_user(db: Session, user: schemas.UserCreate, llm_id: int):
     hashed_password = get_password_hash(user.password)
     db_user = User(
-        llm_id = llm_id, first_name=user.first_name, last_name=user.last_name, email=user.email,
+        llm_id=llm_id, first_name=user.first_name, last_name=user.last_name, email=user.email,
         username=user.username, hashed_password=hashed_password, role=schemas.Role.user
     )
     db.add(db_user)
@@ -48,7 +49,6 @@ def get_llmId_by_user_id(db: Session, user_id: int):
         return user.llm_id
     else:
         return None  # Or handle the case however you see fit
-
 
 def create_schedule(db: Session, schedule: schemas.ScheduleCreate):
     db_schedule = Schedule(**schedule.dict())

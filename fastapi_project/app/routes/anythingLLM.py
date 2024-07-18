@@ -22,6 +22,14 @@ def question_endpoint(request: QuestionRequest):
         return {"response": response}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+@router.post("/question_verified")
+def question_verified_endpoint(request: QuestionVerifiedRequest, db: Session = Depends(get_db)):
+    try:
+        response = question_verified(request.user_id, request.message, request.api_key, db)
+        return {"response": response}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 @router.get("/chats")
 def get_chats(api_key: str = Query(...)):
@@ -72,24 +80,6 @@ async def delete_document(token: str = Query(...), api_key: str = Query(...), do
         response = remove_embeddings(api_key, document_name)
         response2 = remove_document(token, document_name)
         return response, response2
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    
-@router.post("/question_verified")
-def question_verified_endpoint(request: QuestionVerifiedRequest, db: Session = Depends(get_db)):
-    try:
-        response = question(request.message, request.api_key)
-        user_response = crud.create_chat_verified(db, request.user_id, request.message, response)
-        return {"response": user_response.ai_response, "response_id": user_response.id}
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-    
-@router.post("/create_chat_verified")
-def create_chat_verified_endpoint(user_id: int, question: str, ai_response: str, db: Session = Depends(get_db)):
-    try:
-        response = crud.create_chat_verified(db, user_id, question, ai_response)
-        return response
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 

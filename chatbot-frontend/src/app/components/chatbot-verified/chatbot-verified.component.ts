@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, TemplateRef, ElementRef, Input } from '@a
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Message, MESSAGE_TYPE } from '../../utility/constants';
 import { v4 as uuidv4 } from 'uuid';
-import { switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs';
+import { AnythingLLMService } from '../../services/anythingLLM.services';
 import { environment } from '../../../environments/environment';
 
 const ENTER_KEY_ASCII = 13;
@@ -10,7 +11,8 @@ const ENTER_KEY_ASCII = 13;
 @Component({
   selector: 'app-chatbot-verified',
   templateUrl: './chatbot-verified.component.html',
-  styleUrls: ['./chatbot-verified.component.scss']
+  styleUrls: ['./chatbot-verified.component.scss'],
+  providers: [AnythingLLMService]
 })
 export class ChatbotVerifiedComponent implements OnInit {
   private _messages: Message[] = [];
@@ -28,6 +30,7 @@ export class ChatbotVerifiedComponent implements OnInit {
   @ViewChild('scrollframe', { static: true }) scrollFrame!: ElementRef;
 
   constructor(
+    private anythingLLMService: AnythingLLMService,
     private dialog: MatDialog
   ) {}
 
@@ -93,17 +96,33 @@ export class ChatbotVerifiedComponent implements OnInit {
       this.loading = true;
       this.saveConversation();
 
-      // Show confirmation message to user
-      const confirmationMessage = "La tua domanda è stata correttamente inviata. La segreteria risponderà entro 5-10 minuti.";
-      messageObject = this.createMessage(confirmationMessage, MESSAGE_TYPE.ASSISTANT);
-      this._messages = [...this._messages, messageObject];
-      this.loading = false;
-      this.saveConversation();
+      const user_token = localStorage.getItem('llm_token');
 
-      // Simulate delay and fetch the response from the database
-      setTimeout(() => {
+      if (user_token) {
+        const user_id = localStorage.getItem('user_id');
 
-      }, 300000); // 5 minutes delay
+        if (user_id) {
+          this.anythingLLMService.askVerifiedQuestion($event, user_id, user_token).subscribe(
+            (response: any) => {
+              const assistantMessage = 'La tua domanda è stata inoltrata alla segreteria e riceverai una risposta entro 5-10 minuti.';
+              messageObject = this.createMessage(assistantMessage, MESSAGE_TYPE.ASSISTANT);
+              this._messages = [...this._messages, messageObject];
+              this.loading = false;
+              this.saveConversation();
+            },
+            error => {
+              console.error('Error asking question:', error);
+              this.loading = false;
+            }
+          );
+        } else {
+          console.error('User ID not found.');
+          this.loading = false;
+        }
+      } else {
+        console.error('Token not found.');
+        this.loading = false;
+      }
     } else {
       let messageObject: Message = this.createMessage($event, MESSAGE_TYPE.USER);
       this._messages = [...this._messages, messageObject];
@@ -129,21 +148,40 @@ export class ChatbotVerifiedComponent implements OnInit {
   }
 
   private saveConversation() {
-    localStorage.setItem('conversation', JSON.stringify(this._messages));
+    localStorage.setItem('conversation_verified', JSON.stringify(this._messages));
   }
 
   private loadConversation() {
-    const savedConversation = localStorage.getItem('conversation');
+    const savedConversation = localStorage.getItem('conversation_verified');
     if (savedConversation) {
       this._messages = JSON.parse(savedConversation);
     }
   }
 
   private fetchConversationFromBackend() {
-    if (this.apiKey) {
+    const user_id = localStorage.getItem('user_id');
+    if (user_id) {
+      this.anythingLLMService.getVerifiedConversation(user_id).subscribe(
+        (response: any) => {
+          console.log('Conversation fetched:', response);
+          const newMessages: Message[] = [];
+          response.forEach((msg: any) => {
+            const userMessage = this.createMessage(msg.question, MESSAGE_TYPE.USER);
+            newMessages.push(userMessage);
 
+            const assistantMessageContent = msg.verified_response ?? 'La tua domanda è stata inoltrata alla segreteria e riceverai una risposta entro 5-10 minuti.';
+            const assistantMessage = this.createMessage(assistantMessageContent, MESSAGE_TYPE.ASSISTANT);
+            newMessages.push(assistantMessage);
+          });
+          this._messages = newMessages;
+          this.saveConversation();
+        },
+        error => {
+          console.error('Error fetching conversation:', error);
+        }
+      );
     } else {
-      console.error('Token not found.');
+      console.error('User ID not found.');
     }
   }
 
@@ -161,6 +199,21 @@ export class ChatbotVerifiedComponent implements OnInit {
     const username = environment.usernameAdmin;
     const password = environment.passwordAdmin;
 
-    this.closeDialog();
+    this.anythingLLMService.getToken(username, password).pipe(
+      switchMap(tokenData => {
+        const token = tokenData.token;
+        return this.anythingLLMService.deleteAllWorkspacesChat(token);
+      })
+    ).subscribe(
+      () => {
+        this._messages = [];
+        this.saveConversation();
+        this.closeDialog();
+      },
+      error => {
+        console.error('Error clearing conversation:', error);
+        this.closeDialog();
+      }
+    );
   }
 }

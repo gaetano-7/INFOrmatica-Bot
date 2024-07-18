@@ -7,9 +7,6 @@
         </div>
         <span class="assistant-name">Segreteria</span>
       </div>
-      <button class="delete-button" mat-raised-button color="warn" (click)="openConfirmDeleteDialog()">
-        <span class="material-icons">delete</span>
-      </button>
     </div>
 
     <section class="message-panel-container" #scrollframe>
@@ -44,27 +41,9 @@
         type="text"
         (keyup)="onKeyUp($event)"
       />
-      <button class="button" (click)="sendMessage()">
+      <button class="button" (click)="getMessage(message)">
         <span class="material-symbols-outlined">send</span>
       </button>
     </section>
   </div>
-
-  <ng-template #confirmDeleteDialog>
-    <div class="confirm-delete-dialog">
-      <div class="dialog-header">
-        <span class="material-icons warning-icon">warning</span>
-        <h2>Conferma Eliminazione</h2>
-      </div>
-      <p>Sei sicuro di voler eliminare la chat?</p>
-      <div class="dialog-actions">
-        <button mat-raised-button color="warn" (click)="confirmDelete()">
-          <span class="material-icons">delete</span> Si
-        </button>
-        <button mat-raised-button (click)="closeDialog()">
-          <span class="material-icons">cancel</span> No
-        </button>
-      </div>
-    </div>
-  </ng-template>
 </body>

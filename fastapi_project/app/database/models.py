@@ -20,7 +20,7 @@ class User(Base):
     hashed_password = Column(String)
     role = Column(Enum(Role), default=Role.user)
 
-    chat_histories = relationship("ChatHistory", back_populates="user")
+    chat_histories = relationship("ChatVerified", back_populates="user")
 
 class Schedule(Base):
     __tablename__ = 'schedules'
@@ -41,4 +41,4 @@ class ChatVerified(Base):
     ai_response = Column(String)
     verified_response = Column(String, nullable=True)
 
-    user = relationship("User", back_populates="responses")
+    user = relationship("User", back_populates="chat_histories")
