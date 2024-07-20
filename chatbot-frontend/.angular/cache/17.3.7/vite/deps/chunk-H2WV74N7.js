@@ -5196,6 +5196,7 @@ export {
   coerceArray,
   coerceCssPixelValue,
   coerceElement,
+  CdkObserveContent,
   ObserversModule,
   BreakpointObserver,
   Breakpoints,
@@ -5209,6 +5210,7 @@ export {
   isFakeTouchstartFromScreenReader,
   LiveAnnouncer,
   FocusMonitor,
+  CdkMonitorFocus,
   A11yModule,
   Directionality,
   BidiModule,
@@ -5258,4 +5260,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-72CJA7RN.js.map
+//# sourceMappingURL=chunk-H2WV74N7.js.map

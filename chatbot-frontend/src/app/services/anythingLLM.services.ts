@@ -106,6 +106,19 @@ export class AnythingLLMService {
     );
   }
 
+  getUnverifiedChats(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/anythingLLM/get_all_unverified_chats`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  verifyChatResponse(id: number, verified_response: string): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/anythingLLM/verify_response?response_id=${id}&verified_response=${verified_response}`, {}).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+
   private handleError(error: any) {
     console.error('An error occurred', error);
     return throwError(error.message || error);

@@ -79,6 +79,12 @@ def create_chat_verified(db: Session, user_id: int, question: str, ai_response: 
 def get_chat_verified(db: Session, response_id: int):
     return db.query(ChatVerified).filter(ChatVerified.id == response_id).first()
 
+def get_all_chat_verified(db: Session):
+    return db.query(ChatVerified).all()
+
+def get_all_unverified_chats(db: Session):
+    return db.query(ChatVerified).filter(ChatVerified.verified_response == None).all()
+
 def update_verified_response(db: Session, response_id: int, verified_response: str):
     response = db.query(ChatVerified).filter(ChatVerified.id == response_id).first()
     if response:

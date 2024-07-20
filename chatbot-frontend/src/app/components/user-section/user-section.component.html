@@ -1,0 +1,33 @@
+<div class="user-section-container">
+  <h1>Gestione Utenti</h1>
+  <div class="messages">
+    <p class="success-message" *ngIf="usersSuccessMessage">{{ usersSuccessMessage }}</p>
+    <p class="error-message" *ngIf="usersErrorMessage">{{ usersErrorMessage }}</p>
+  </div>
+  <div class="user-list">
+    <div class="user-card" *ngFor="let user of users">
+      <fa-icon [icon]="faUser" size="3x" class="user-icon"></fa-icon>
+      <div class="user-details">
+        <h2>{{ user.username }}</h2>
+        <p><strong>Nome:</strong> {{ user.first_name }}</p>
+        <p><strong>Cognome:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Ruolo:</strong> {{ user.role }}</p>
+      </div>
+      <button mat-button class="delete-button" (click)="deleteUser(user.id, $event)">
+        <fa-icon [icon]="faTrash"></fa-icon> Elimina
+      </button>    
+    </div>
+  </div>
+</div>
+
+<ng-template #confirmDeleteDialog let-data="data">
+  <div class="confirm-delete-dialog">
+    <h2>Conferma eliminazione</h2>
+    <p>Sei sicuro di voler eliminare l'utente?</p>
+    <div class="dialog-actions">
+      <button mat-raised-button color="warn" (click)="closeConfirmDeleteDialog(true)">Si</button>
+      <button mat-raised-button (click)="closeConfirmDeleteDialog(false)">No</button>
+    </div>
+  </div>
+</ng-template>

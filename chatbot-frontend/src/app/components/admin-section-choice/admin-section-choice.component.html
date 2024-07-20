@@ -1,0 +1,26 @@
+<div class="admin-section-choice-container">
+  <h1>Seleziona la sezione</h1>
+  <div class="section-options">
+    <div class="section-option" (click)="selectSection('users')">
+      <fa-icon [icon]="faUser" size="4x"></fa-icon>
+      <h2>Utenti</h2>
+      <p>Visualizza tutti gli utenti registrati.</p>
+      <p>Visualizza i dettagli di ogni utente.</p>
+      <p>Elimina gli utenti.</p>
+    </div>
+    <div class="section-option" (click)="selectSection('documents')">
+      <fa-icon [icon]="faFileAlt" size="4x"></fa-icon>
+      <h2>Documenti</h2>
+      <p>Visualizza tutti i documenti caricati su AnythingLLM.</p>
+      <p>Carica documenti tramite link o file.</p>
+      <p>Carica orari tramite iCal link.</p>
+    </div>
+    <div class="section-option" (click)="selectSection('verify-responses')">
+      <fa-icon [icon]="faCheck" size="4x"></fa-icon>
+      <h2>Verifica Risposte</h2>
+      <p>Visualizza le domande fatte dagli utenti.</p>
+      <p>Conferma le risposte date dall'AI.</p>
+      <p>Modifica le risposte date dall'AI.</p>
+    </div>
+  </div>
+</div>

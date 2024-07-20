@@ -28,12 +28,13 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #383838;
-  padding: 8px 16px;
+  padding: 16px 32px; /* Increased padding */
   box-sizing: border-box;
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem; /* Increased font size */
 }
 
 .header-left {
@@ -42,10 +43,10 @@ body {
 }
 
 .header-left .avatar {
-  margin-right: 8px;
+  margin-right: 16px; /* Increased margin */
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 48px; /* Increased size */
+  height: 48px; /* Increased size */
   background-size: cover;
   background-position: center;
   position: relative;
@@ -55,15 +56,15 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 10px;
-  height: 10px;
+  width: 12px; /* Increased size */
+  height: 12px; /* Increased size */
   background-color: green;
   border-radius: 50%;
   border: 2px solid #383838;
 }
 
 .assistant-name {
-  font-size: 16px;
+  font-size: 1.5rem; /* Increased font size */
   font-weight: bold;
 }
 
@@ -71,10 +72,11 @@ body {
   background-color: #ff4d4d;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 10px 20px; /* Increased padding */
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 1.2rem; /* Increased font size */
 }
 
 .delete-button:hover {
@@ -86,7 +88,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px; /* Increased width */
   height: 90%;
   border-radius: 10px;
   background-color: #d7d7d7;
@@ -98,14 +100,14 @@ body {
 .message-panel-container {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
+  padding: 20px; /* Increased padding */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   backdrop-filter: blur(3px);
 
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 12px; /* Increased scrollbar width */
   }
 
   &::-webkit-scrollbar-track {
@@ -124,7 +126,7 @@ body {
 
 .message-inner-container {
   display: flex;
-  padding: 8px;
+  padding: 16px; /* Increased padding */
   transition: transform 0.3s ease;
 }
 
@@ -143,14 +145,14 @@ body {
 .message-container {
   display: flex;
   align-items: center;
-  max-width: 70%;
+  max-width: 80%; /* Increased width */
   word-wrap: break-word;
   box-sizing: border-box;
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
+  width: 48px; /* Increased size */
+  height: 48px; /* Increased size */
   border-radius: 50%;
   background-size: cover;
   background-position: center;
@@ -158,14 +160,15 @@ body {
 }
 
 .message {
-  margin: 0 8px;
-  padding: 10px;
+  margin: 0 16px; /* Increased margin */
+  padding: 20px; /* Increased padding */
   border-radius: 20px;
   background-color: #f1f1f1;
   word-wrap: break-word;
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem; /* Increased font size */
 }
 
 .assistant-message .message {
@@ -181,18 +184,18 @@ body {
 .no-message-container {
   background-color: #e0e0e0;
   width: fit-content;
-  padding: 10px 20px;
+  padding: 20px 40px; /* Increased padding */
   border-radius: 10px;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
-  font-size: 14px;
+  font-size: 1.2rem; /* Increased font size */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .user-input-container {
   display: flex;
-  padding: 10px;
+  padding: 20px; /* Increased padding */
   border-top: 1px solid #ddd;
   background-color: #f1f1f1;
   align-items: center;
@@ -203,20 +206,21 @@ body {
 
 .input-textfield {
   flex: 1;
-  padding: 8px;
+  padding: 12px; /* Increased padding */
   border: 1px solid #ccc;
   border-radius: 10px;
-  margin-right: 8px;
+  margin-right: 16px; /* Increased margin */
   box-sizing: border-box;
+  font-size: 1.2rem; /* Increased font size */
 }
 
 .button {
   background-color: #3f51b5;
   border: none;
   color: white;
-  padding: 8px 16px;
+  padding: 12px 24px; /* Increased padding */
   display: inline-block;
-  font-size: 16px;
+  font-size: 1.2rem; /* Increased font size */
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
@@ -234,7 +238,7 @@ body {
   }
 
   .message-inner-container {
-    padding: 5px;
+    padding: 10px; /* Adjusted padding for mobile */
   }
 
   .message-container {
@@ -242,16 +246,16 @@ body {
   }
 
   .input-textfield {
-    margin-right: 5px;
+    margin-right: 10px; /* Adjusted margin for mobile */
   }
 
   .button {
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 10px 16px; /* Adjusted padding for mobile */
+    font-size: 1rem; /* Adjusted font size for mobile */
   }
 
   .chat-header {
-    padding: 5px 10px;
+    padding: 10px 16px; /* Adjusted padding for mobile */
   }
 
   .header-left {
@@ -266,10 +270,10 @@ body {
 
 .confirm-delete-dialog {
   background-color: white;
-  padding: 20px;
+  padding: 40px; /* Increased padding */
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+  max-width: 600px; /* Increased width */
   margin: auto;
   text-align: center;
   animation: fadeIn 0.3s ease;
@@ -278,40 +282,40 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Increased margin */
 
     .warning-icon {
       color: #ff4d4d;
-      font-size: 36px;
-      margin-right: 10px;
+      font-size: 48px; /* Increased font size */
+      margin-right: 20px; /* Increased margin */
       animation: shake 0.5s ease-in-out infinite alternate;
     }
 
     h2 {
-      font-size: 20px;
+      font-size: 24px; /* Increased font size */
       margin: 0;
     }
   }
 
   p {
-    font-size: 15px;
-    margin-bottom: 20px;
+    font-size: 18px; /* Increased font size */
+    margin-bottom: 30px; /* Increased margin */
   }
 
   .dialog-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 30px; /* Increased margin */
 
     button {
       flex: 1;
-      margin: 0 10px;
-      font-size: 14px;
+      margin: 0 20px; /* Increased margin */
+      font-size: 16px; /* Increased font size */
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      padding: 10px 15px;
+      gap: 10px; /* Increased gap */
+      padding: 15px 20px; /* Increased padding */
       border-radius: 8px;
       transition: background-color 0.3s ease, transform 0.3s ease;
       cursor: pointer;
@@ -321,7 +325,7 @@ body {
       }
 
       .material-icons {
-        font-size: 18px;
+        font-size: 24px; /* Increased font size */
       }
     }
 
@@ -358,9 +362,9 @@ body {
 
 @keyframes shake {
   from {
-    transform: translateX(-2px);
+    transform: translateX(-4px); /* Increased shake distance */
   }
   to {
-    transform: translateX(2px);
+    transform: translateX(4px); /* Increased shake distance */
   }
 }

@@ -7,9 +7,9 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 2000; // Set a high z-index for the header
   box-sizing: border-box;
-  height: 60px;
+  height: 80px;
   border-bottom: 2px solid #b71918;
   transition: background-color 0.3s ease, height 0.3s ease;
 
@@ -25,7 +25,7 @@
 
   &:hover {
     background-color: #a31717;
-    height: 70px;
+    height: 90px;
   }
 }
 
@@ -54,12 +54,15 @@
 .icons-container {
   display: flex;
   align-items: center;
-  
 
-  button.mat-icon-button {
+  .chat-button {
+    background: none;
+    border: none;
     color: #ffffff;
-    margin-left: 15px;
-    font-size: 2rem;  /* Increase icon size */
+    cursor: pointer;
+    padding: 0;
+    margin-right: 20px; /* Increased margin */
+    font-size: 2.5rem;  /* Increase icon size */
     transition: transform 0.3s ease;
 
     &:hover {
@@ -68,6 +71,7 @@
 
     @media (max-width: 480px) {
       margin-left: 10px;
+      margin-right: 10px; /* Ensure spacing on small screens */
     }
   }
 
@@ -80,8 +84,8 @@
       color: #ffffff;
       cursor: pointer;
       padding: 0;
-      margin-right: 10px;
-      font-size: 2rem;  /* Increase icon size */
+      margin-right: 20px; /* Increased margin */
+      font-size: 2.5rem;  /* Increase icon size */
       transition: transform 0.3s ease;
 
       &:hover {
@@ -89,7 +93,7 @@
       }
 
       @media (max-width: 480px) {
-        margin-right: 5px;
+        margin-right: 10px; /* Ensure spacing on small screens */
       }
     }
 
@@ -99,8 +103,8 @@
       right: 0;
       background-color: #ffffff;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      min-width: 200px;  /* Increase width */
+      z-index: 3000; // Ensure the dropdown menu has a higher z-index
+      min-width: 300px;  /* Increase width */
       border-radius: 10px;
       overflow: hidden;
       cursor: pointer;
@@ -116,13 +120,15 @@
       a {
         display: flex;
         align-items: center;
-        padding: 15px;  /* Increase padding */
+        padding: 20px;  /* Increase padding */
         color: #333;
+        font-weight: bold;
         text-decoration: none;
         transition: background 0.3s, color 0.3s;
 
         fa-icon {
-          margin-right: 10px;
+          font-size: 2rem;
+          margin-right: 15px;
         }
 
         &:hover {
@@ -176,6 +182,56 @@
 }
 
 .login-prompt-dialog p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #666;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+.logout-dialog {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  margin: auto;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    max-width: 95%;
+  }
+}
+
+.logout-dialog h2 {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
+}
+
+.logout-dialog p {
   font-size: 16px;
   margin-bottom: 20px;
   text-align: center;

@@ -1,0 +1,42 @@
+<div class="admin-response-verification-container">
+  <h1>Verifica delle Risposte</h1>
+  <div class="messages">
+      <p class="success-message" *ngIf="chatsSuccessMessage">
+        <fa-icon [icon]="faCheckCircle"></fa-icon>
+        {{ chatsSuccessMessage }}
+      </p>
+      <p class="error-message" *ngIf="chatsErrorMessage">
+        <fa-icon [icon]="faTimesCircle"></fa-icon>
+        {{ chatsErrorMessage }}
+      </p>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+      <fa-icon [icon]="faSpinner" [spin]="true" size="3x"></fa-icon>
+  </div>
+
+  <div *ngIf="!loading && chats.length === 0" class="no-chats">
+      <p>Non ci sono risposte da verificare.</p>
+  </div>
+
+  <div *ngFor="let chat of chats" class="chat-item">
+    <p><strong>Domanda:</strong> {{ chat.question }}</p>
+    <p><strong>Risposta AI:</strong> {{ chat.ai_response }}</p>
+    <textarea *ngIf="chat.editMode" [(ngModel)]="chat.verified_response" placeholder="Modifica la risposta"></textarea>
+    <button *ngIf="!chat.editMode" (click)="confirmResponse(chat, $event)">Conferma Risposta AI</button>
+    <button *ngIf="!chat.editMode" (click)="enableEdit(chat)">Modifica Risposta</button>
+    <button *ngIf="chat.editMode" (click)="updateResponse(chat, $event)">Salva Risposta Modificata</button>
+    <button *ngIf="chat.editMode" (click)="cancelEdit(chat)">Indietro</button>
+  </div>
+</div>
+
+<ng-template #confirmResponseDialog let-data="data">
+  <div class="confirm-response-dialog">
+    <h2>Conferma risposta</h2>
+    <p>Sei sicuro di voler confermare la risposta?</p>
+    <div class="dialog-actions">
+      <button mat-raised-button color="warn" (click)="closeConfirmResponseDialog(true)">Si</button>
+      <button mat-raised-button (click)="closeConfirmResponseDialog(false)">No</button>
+    </div>
+  </div>
+</ng-template>

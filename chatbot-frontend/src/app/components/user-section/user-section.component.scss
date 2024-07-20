@@ -1,0 +1,128 @@
+$primary-color: #4CAF50;
+$secondary-color: #FF9800;
+$hover-color: #f1f1f1;
+$border-radius: 15px;
+$background-gradient: linear-gradient(135deg, #b71918, #ff7961);
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+.user-section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 60px;
+  background: $background-gradient;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+
+  h1 {
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .messages {
+    .success-message {
+      color: $primary-color;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .error-message {
+      color: #f44336;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+  }
+
+  .user-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+
+    .user-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: $border-radius;
+      padding: 20px;
+      margin: 15px;
+      width: 300px;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      box-shadow: $box-shadow;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+      &:hover {
+        background-color: $hover-color;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
+      }
+
+      .user-icon {
+        color: $secondary-color;
+        margin-bottom: 20px;
+      }
+
+      .user-details {
+        width: 100%;
+        h2 {
+          color: $primary-color;
+          font-size: 1.8em;
+          margin-bottom: 10px;
+        }
+
+        p {
+          margin: 5px 0;
+          color: #333;
+        }
+      }
+
+      .delete-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #f44336;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: rgba(244, 67, 54, 0.1);
+        }
+      }
+    }
+  }
+}
+
+.confirm-delete-dialog {
+  text-align: center;
+  padding: 20px;
+
+  h2 {
+    color: #d32f2f;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      margin: 0 8px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $hover-color;
+      }
+    }
+  }
+}

@@ -92,6 +92,23 @@ def get_chat_verified_endpoint(response_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Response not found")
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+@router.get("/get_all_chat_verified")
+def get_all_chat_verified_endpoint(db: Session = Depends(get_db)):
+    try:
+        responses = crud.get_all_chat_verified(db)
+        return responses
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    
+@router.get("/get_all_unverified_chats")
+def get_all_unverified_chats_endpoint(db: Session = Depends(get_db)):
+    try:
+        responses = crud.get_all_unverified_chats(db)
+        return responses
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
 
 @router.post("/verify_response")
 def verify_response_endpoint(response_id: int, verified_response: str, db: Session = Depends(get_db)):

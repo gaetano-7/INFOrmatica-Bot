@@ -1,0 +1,239 @@
+$background-gradient: linear-gradient(135deg, #b71918, #ff7961);
+$card-background: #f5f5f5;
+$card-border: #ddd;
+$primary-color: #4CAF50;
+$secondary-color: #FF9800;
+$hover-color: #f1f1f1;
+$border-radius: 15px;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+.document-section-container {
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  background: $background-gradient;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: white;
+  }
+}
+
+.messages {
+  width: 100%;
+  text-align: center;
+
+  .success-message, .error-message {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    fa-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.upload-card {
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  background-color: $card-background;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  overflow: hidden;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  mat-card-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.25em;
+    background: $background-gradient;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 16px;
+
+    fa-icon {
+      margin-right: 8px;
+    }
+
+    .header-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
+}
+
+.upload-options-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  width: 100%;
+  max-width: 1168px;
+  gap: 30px !important;
+  border-radius: 10px !important;
+  background-color: #ccc !important;
+
+  .upload-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    &:first-child, &:nth-child(2), &:last-child  {
+      flex: none; // Remove flex grow/shrink behavior
+      width: 28%; // Set a specific width for the first and second upload-option-card
+      margin: 8px auto; // Center the cards horizontally
+    }
+
+    .upload-option-card {
+      width: 100%;
+      border-radius: 10px;
+      background-color: $card-background;
+      border: 1px solid $card-border;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1;  // Ensure the cards grow to the same height
+
+      fa-icon {
+        margin-bottom: 8px;
+      }
+
+      mat-card-header {
+        display: flex;
+        align-items: center;
+        font-size: 1.25em;
+        background: $background-gradient;
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        width: 100%; // Ensure the header takes full width of the card
+        padding: 16px; // Adjust padding to be consistent
+        box-sizing: border-box;
+
+        fa-icon {
+          margin-right: 8px;
+        }
+
+        .header-title {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      button {
+        margin-top: 8px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.document-list {
+  width: 100%;
+  max-width: 1200px;
+
+  .document-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: $card-background;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    .document-icon {
+      margin-right: 16px;
+    }
+
+    .document-details {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        margin: 0;
+      }
+
+      .delete-button {
+        color: #f44336;;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: rgba(244, 67, 54, 0.1);
+        }
+      }
+    }
+  }
+}
+
+.confirm-delete-dialog {
+  text-align: center;
+  padding: 20px;
+
+  h2 {
+    color: #d32f2f;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      margin: 0 8px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $hover-color;
+      }
+    }
+  }
+}
+
