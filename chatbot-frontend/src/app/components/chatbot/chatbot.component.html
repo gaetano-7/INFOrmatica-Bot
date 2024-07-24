@@ -1,70 +1,106 @@
 <body>
-  <div class="chat-container">
-    <div class="chat-header">
-      <div class="header-left">
-        <div class="avatar" [ngStyle]="{'background-image': 'url(' + avatarPath + ')'}">
-          <span class="status-indicator"></span>
-        </div>
-        <span class="assistant-name">AI Assistant</span>
-      </div>
-      <button class="delete-button" mat-raised-button color="warn" (click)="openConfirmDeleteDialog()">
-        <span class="material-icons">delete</span>
+  <div class="container">
+
+    <div class="sidebar" [ngClass]="{ 'open': sidebarOpen, 'closed': !sidebarOpen }">
+      <button class="close-sidebar-button" *ngIf="sidebarOpen" (click)="toggleSidebar()">
+        <img [src]="isDarkMode ? 'assets/sidebar-close.png' : 'assets/sidebar-close-light.png'" alt="Close Sidebar" />
       </button>
+      <div class="chat-options">
+        <div class="chat-option" 
+             [ngClass]="{'active': currentChat === 'assistant'}" 
+             (click)="navigateToChat('assistant')">
+          <img class="avatar" [src]="avatarPath" alt="AI Assistant Avatar">
+          <span>AI Assistant</span>
+        </div>
+        <div class="chat-option" 
+             [ngClass]="{'active': currentChat === 'segreteria'}" 
+             (click)="navigateToChat('segreteria')">
+          <img class="avatar" [src]="segreteriaPath" alt="Segreteria Avatar">
+          <span>Segreteria</span>
+        </div>
+      </div>
+      
+      <div class="theme-switch">
+        <span class="theme-label">{{ isDarkMode ? '🌙 Dark Mode' : '☀️ Light Mode' }}</span>
+        <div class="toggle-switch">
+          <input 
+            type="checkbox" 
+            id="themeToggle" 
+            (change)="toggleTheme()" 
+            [checked]="isDarkMode">
+          <label for="themeToggle" class="switch-label">
+            <span class="switch-indicator"></span>
+          </label>
+        </div>
+      </div>       
+
     </div>
 
-    <section class="message-panel-container" #scrollframe>
-      <ng-container *ngIf="messages.length; else noMessages">
-        <ng-container *ngFor="let message of messages; trackBy: trackByMessageId">
-          <div [ngClass]="{'message-inner-container': true, 'user-message': message.sender === 'user', 'assistant-message': message.sender === 'assistant'}">
-            <div class="message-container">
-              <div *ngIf="message.sender === 'assistant'" class="avatar" [ngStyle]="{'background-image': 'url(' + avatarPath + ')'}"></div>
-              <div class="message">{{ message.content }}</div>
-              <div *ngIf="message.sender === 'user'" class="avatar" [ngStyle]="{'background-image': 'url(' + userPath + ')'}"></div>
-            </div>
-          </div>
-        </ng-container>
-      </ng-container>
-      <ng-template #noMessages>
-        <div class="no-message-container">Nessun messaggio</div>
-      </ng-template>
+    <div class="chat-content">
 
-      <div *ngIf="loading" class="loading-icon">
-        <img src="../../assets/loading.svg" width="70" />
+      <div class="chat-header">
+        <button class="sidebar-toggle-button" *ngIf="!sidebarOpen" (click)="toggleSidebar()">
+          <img [src]="isDarkMode ? 'assets/sidebar-open.png' : 'assets/sidebar-open-light.png'" alt="Open Sidebar" />
+        </button>
+        <div class="header-left">
+          <div class="avatar" [ngStyle]="{'background-image': 'url(' + avatarPath + ')'}">
+            <span class="status-indicator"></span>
+          </div>
+          <span class="assistant-name">AI Assistant</span>
+        </div>
+        <button class="delete-button" mat-raised-button color="warn" (click)="openConfirmDeleteDialog()">
+          <span class="material-icons">delete</span>
+        </button>
       </div>
 
-      <audio #audio src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3"></audio>
-      <audio #audioToggle src="https://assets.mixkit.co/active_storage/sfx/2925/2925-preview.mp3"></audio>
-    </section>
+      <section class="message-panel-container" #scrollframe>
+        <ng-container *ngIf="messages.length; else noMessages">
+          <ng-container *ngFor="let message of messages; trackBy: trackByMessageId">
+            <div [ngClass]="{'message-inner-container': true, 'user-message': message.sender === 'user', 'assistant-message': message.sender === 'assistant'}">
+              <div class="message-container">
+                <div *ngIf="message.sender === 'assistant'" class="avatar" [ngStyle]="{'background-image': 'url(' + avatarPath + ')'}"></div>
+                <div class="message">{{ message.content }}</div>
+                <div *ngIf="message.sender === 'user'" class="avatar" [ngStyle]="{'background-image': 'url(' + userPath + ')'}"></div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-template #noMessages>
+          <div class="no-message-container">Nessun messaggio</div>
+        </ng-template>
 
-    <section class="user-input-container">
-      <input
-        class="input-textfield"
-        [(ngModel)]="message"
-        placeholder="Di che informazione hai bisogno?"
-        type="text"
-        (keyup)="onKeyUp($event)"
-      />
-      <button class="button" (click)="getMessage(message)">
-        <span class="material-symbols-outlined">send</span>
-      </button>
-    </section>
+        <div *ngIf="loading" class="loading-icon">
+          <img src="../../assets/loading.svg" width="70" />
+        </div>
+
+        <audio #audio src="https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3"></audio>
+        <audio #audioToggle src="https://assets.mixkit.co/active_storage/sfx/2925/2925-preview.mp3"></audio>
+      </section>
+
+      <section class="user-input-container">
+        <input
+          class="input-textfield"
+          [(ngModel)]="message"
+          placeholder="Di che informazione hai bisogno?"
+          type="text"
+          (keyup)="onKeyUp($event)"
+        />
+        <button class="send-button" mat-icon-button color="primary" aria-label="Send message" (click)="sendMessage()">
+          <span class="material-icons">send</span>
+        </button>
+      </section>
+
+    </div>
+
   </div>
 
   <ng-template #confirmDeleteDialog>
-    <div class="confirm-delete-dialog">
-      <div class="dialog-header">
-        <span class="material-icons warning-icon">warning</span>
-        <h2>Conferma Eliminazione</h2>
-      </div>
-      <p>Sei sicuro di voler eliminare la chat?</p>
-      <div class="dialog-actions">
-        <button mat-raised-button color="warn" (click)="confirmDelete()">
-          <span class="material-icons">delete</span> Si
-        </button>
-        <button mat-raised-button (click)="closeDialog()">
-          <span class="material-icons">cancel</span> No
-        </button>
-      </div>
-    </div>
+    <h2 mat-dialog-title>Conferma</h2>
+    <mat-dialog-content>Sei sicuro di voler eliminare la cronologia chat?</mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="closeDialog()">Annulla</button>
+      <button mat-button (click)="confirmDelete()" color="warn">Elimina</button>
+    </mat-dialog-actions>
   </ng-template>
+  
 </body>

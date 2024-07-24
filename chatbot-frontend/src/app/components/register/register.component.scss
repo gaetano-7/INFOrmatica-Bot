@@ -1,9 +1,9 @@
 :host {
   display: flex;
-  justify-content: center; // Centro il contenitore orizzontalmente
-  align-items: center; // Centro il contenitore verticalmente
-  height: 100vh; // Faccio in modo che il contenitore occupi tutta l'altezza della viewport
-  padding-top: 60px; // Padding superiore per fare spazio all'header
+  justify-content: center; 
+  align-items: center;
+  height: 100vh;
+  padding-top: 60px;
   box-sizing: border-box;
   background: linear-gradient(135deg, #b71918, #ff7961);
   background-size: cover;
@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; // Altezza calcolata per tenere conto dell'header fisso
+  height: 100vh;
   overflow: hidden;
   padding: 0;
   backdrop-filter: blur(3px);
@@ -41,45 +41,46 @@ body {
 .register-container {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
-  padding: 40px 30px;
+  padding: 30px 50px;  // Aumentato il padding laterale
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 450px;
+  max-width: 700px;  // Aumentato il max-width
   box-sizing: border-box;
   text-align: center;
+  position: relative;
 
   @media (max-width: 768px) {
-    padding: 30px 20px;
+    padding: 40px 60px;  // Riduzione del padding per schermi medi
     max-width: 90%;
   }
 
   @media (max-width: 480px) {
-    padding: 20px 15px;
+    padding: 30px 40px;  // Riduzione del padding per schermi piccoli
     max-width: 95%;
   }
 
   h1 {
-    font-size: 2.5em;
+    font-size: 3em;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     @media (max-width: 768px) {
-      font-size: 2em;
+      font-size: 2.5em;
     }
 
     @media (max-width: 480px) {
-      font-size: 1.8em;
+      font-size: 2.2em;
     }
   }
 
   p {
     margin-top: 0;
     color: #666;
-    font-size: 1em;
-    margin-bottom: 20px;
+    font-size: 1.2em;
+    margin-bottom: 30px;
 
     @media (max-width: 480px) {
-      font-size: 0.9em;
+      font-size: 1em;
     }
   }
 
@@ -98,41 +99,41 @@ body {
 
       div {
         flex: 1;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
         position: relative;
 
         @media (max-width: 768px) {
-          margin-bottom: 12px;
+          margin-bottom: 15px;
         }
 
         @media (max-width: 480px) {
-          margin-bottom: 10px;
+          margin-bottom: 12px;
         }
 
         label {
-          font-size: 1em;
+          font-size: 1.2em;
           display: block;
-          margin-bottom: 0.5em;
+          margin-bottom: 0.7em;
           font-weight: bold;
           color: #333;
 
           @media (max-width: 768px) {
-            font-size: 0.9em;
+            font-size: 1em;
           }
 
           @media (max-width: 480px) {
-            font-size: 0.8em;
+            font-size: 0.9em;
           }
         }
 
         input {
           display: block;
           width: 100%;
-          padding: 12px;
+          padding: 15px;
           border: 1px solid #ccc;
           border-radius: 10px;
           box-sizing: border-box;
-          font-size: 1em;
+          font-size: 1.2em;
           transition: border-color 0.3s;
 
           &:focus {
@@ -141,11 +142,26 @@ body {
           }
 
           @media (max-width: 768px) {
-            padding: 10px;
+            padding: 12px;
           }
 
           @media (max-width: 480px) {
-            padding: 8px;
+            padding: 10px;
+          }
+        }
+
+        .error {
+          color: #d9534f;
+          font-size: 0.9em;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          text-align: left;
+          margin-top: 5px;
+
+          @media (max-width: 480px) {
+            font-size: 0.8em;
           }
         }
       }
@@ -153,14 +169,14 @@ body {
 
     button {
       display: block;
-      margin-top: 20px;
+      margin-top: 30px;
       width: 100%;
-      padding: 12px;
+      padding: 18px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       background-color: #ff5f6d;
       color: #fff;
-      font-size: 1em;
+      font-size: 18px;
       cursor: pointer;
       transition: background-color 0.3s;
 
@@ -169,24 +185,25 @@ body {
       }
 
       @media (max-width: 768px) {
-        padding: 10px;
-        font-size: 0.9em;
+        padding: 15px;
+        font-size: 16px;
       }
 
       @media (max-width: 480px) {
-        padding: 8px;
-        font-size: 0.8em;
-      }
-    }
-
-    .error {
-      color: #d9534f;
-      margin-top: 10px;
-      font-size: 0.9em;
-
-      @media (max-width: 480px) {
-        font-size: 0.8em;
+        padding: 12px;
+        font-size: 14px;
       }
     }
   }
 }
+
+.success-snackbar {
+  background-color: #4caf50;
+  color: white;
+}
+
+.error-snackbar {
+  background-color: #f44336;
+  color: white;
+}
+

@@ -146,110 +146,63 @@
   }
 }
 
-.login-prompt-dialog {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  max-width: 400px;
-  margin: auto;
-
-  @media (max-width: 768px) {
-    padding: 20px;
-    max-width: 90%;
-  }
-
-  @media (max-width: 480px) {
-    padding: 15px;
-    max-width: 95%;
-  }
-}
-
-.login-prompt-dialog h2 {
-  font-size: 24px;
-  margin-top: 0;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #333;
-
-  @media (max-width: 768px) {
-    font-size: 22px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 20px;
-  }
-}
-
-.login-prompt-dialog p {
-  font-size: 16px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #666;
-
-  @media (max-width: 768px) {
-    font-size: 15px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 14px;
-  }
-}
-
+.login-prompt-dialog,
 .logout-dialog {
   background-color: #ffffff;
-  padding: 30px;
+  padding: 40px; // Aumentato il padding
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  max-width: 400px;
+  max-width: 500px; // Aumentata la larghezza massima
   margin: auto;
 
   @media (max-width: 768px) {
-    padding: 20px;
-    max-width: 90%;
+    padding: 30px; // Aumentato il padding per schermi medi
+    max-width: 95%;
   }
 
   @media (max-width: 480px) {
-    padding: 15px;
-    max-width: 95%;
+    padding: 25px; // Aumentato il padding per schermi piccoli
+    max-width: 100%;
   }
 }
 
+.login-prompt-dialog h2,
 .logout-dialog h2 {
-  font-size: 24px;
+  font-size: 28px; // Aumentata la dimensione del carattere
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 25px; // Aumentato il margine inferiore
   text-align: center;
   color: #333;
 
   @media (max-width: 768px) {
-    font-size: 22px;
+    font-size: 26px;
   }
 
   @media (max-width: 480px) {
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 
+.login-prompt-dialog p,
 .logout-dialog p {
-  font-size: 16px;
-  margin-bottom: 20px;
+  font-size: 18px; // Aumentata la dimensione del carattere
+  margin-bottom: 25px; // Aumentato il margine inferiore
   text-align: center;
   color: #666;
 
   @media (max-width: 768px) {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   @media (max-width: 480px) {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
 .dialog-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 30px; // Aumentato il margine superiore
 
   @media (max-width: 480px) {
     flex-direction: column;
@@ -259,11 +212,11 @@
 
 .dialog-actions button {
   flex: 1;
-  margin: 0 10px;
-  font-size: 14px;
+  margin: 0 15px; // Aumentato il margine laterale
+  font-size: 16px; // Aumentata la dimensione del carattere
 
   @media (max-width: 480px) {
-    margin: 10px 0;
-    font-size: 13px;
+    margin: 10px 0; // Aumentato il margine per schermi piccoli
+    font-size: 15px;
   }
 }

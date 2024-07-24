@@ -20,7 +20,8 @@
     </div>
     <div>
       <button class="login-button" type="submit" [disabled]="loading">
-        <span>🔑 Login</span>
+        <span *ngIf="!loading">🔑 Login</span>
+        <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
       </button>
     </div>
     <div *ngIf="error" class="error">

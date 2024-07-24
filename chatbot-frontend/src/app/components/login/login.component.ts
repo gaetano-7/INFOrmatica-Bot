@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -30,13 +32,20 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)
       .subscribe({
-        next: data => {
-          
+        next: () => {
+          this.loading = false;
+          this.snackBar.open('Login riuscito!', 'Chiudi', {
+            duration: 3000,
+            panelClass: ['success-snackbar']
+          });
           this.router.navigate(['/']);
         },
-        error: error => {
-          this.error = 'Username o password sbagliate!';
+        error: () => {
           this.loading = false;
+          this.snackBar.open('Username o password sbagliate!', 'Chiudi', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
         }
       });
   }

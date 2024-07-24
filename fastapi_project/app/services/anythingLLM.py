@@ -108,7 +108,7 @@ def question(message, API_KEY):
         'Accept-Language': 'it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,es;q=0.6,zh-CN;q=0.5,zh-TW;q=0.4,zh;q=0.3,cs;q=0.2',
         'Authorization': f'Bearer {API_KEY}',
         'Connection': 'keep-alive',
-        'Content-Type': 'text/plain;charset=UTF-8',
+        'Content-Type': 'application/json;charset=UTF-8',
         'Cookie': 'Idea-2aa665c8=8e9eef7d-da25-43c3-9a6e-4b807fa944d0; __stripe_mid=4137c64c-e905-4136-8b01-864c9f5fbf614e6f48; g_state={"i_l":0}; Idea-2aa665c9=2eb0820e-4c92-4ba1-ab5e-65c29626a7d9',
         'Origin': 'http://localhost:3001',
         'Referer': 'http://localhost:3001/workspace/informatica-bot',
@@ -127,10 +127,12 @@ def question(message, API_KEY):
     }
 
     response = requests.post(url, headers=headers, json=data)
+    response.encoding = 'utf-8'  
     ai_response = response.text
     parsed_response = parse_response(ai_response)
 
     return parsed_response
+
 
 def question_verified(user_id, message, API_KEY, db: Session = Depends(get_db)):
     url = 'http://localhost:3001/api/workspace/informatica-bot/stream-chat'
@@ -153,10 +155,11 @@ def question_verified(user_id, message, API_KEY, db: Session = Depends(get_db)):
     }
     current_date = datetime.now()
     data = {
-        'message': f"date: {current_date}, question: {message}"
+        'message': f'date: {current_date}, question: "{message}"'
     }
 
     response = requests.post(url, headers=headers, json=data)
+    response.encoding = 'utf-8'  
     ai_response = response.text
 
     parsed_response = parse_response(ai_response)
@@ -341,7 +344,6 @@ def remove_document(api_key, document_path):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
     }
 
-    # Corpo della richiesta
     data = {
         "names": [f"custom-documents/{document_path}"]
     }

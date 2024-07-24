@@ -211,23 +211,30 @@ $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 .confirm-delete-dialog {
   text-align: center;
-  padding: 20px;
+  padding: 40px; 
+  max-width: 600px; 
+  margin: auto; 
 
   h2 {
     color: #d32f2f;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 28px;
   }
 
   p {
-    margin-bottom: 20px;
+    margin-bottom: 30px; 
+    font-size: 18px; 
   }
 
   .dialog-actions {
     display: flex;
     justify-content: space-around;
+    margin-top: 30px; 
 
     button {
-      margin: 0 8px;
+      margin: 0 15px; 
+      padding: 12px 24px; 
+      font-size: 16px; 
       transition: background-color 0.3s ease;
 
       &:hover {
@@ -236,4 +243,5 @@ $box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
   }
 }
+
 

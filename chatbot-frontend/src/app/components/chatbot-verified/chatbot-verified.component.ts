@@ -1,10 +1,14 @@
-import { Component, OnInit, ViewChild, TemplateRef, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, ElementRef, Input, ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Message, MESSAGE_TYPE } from '../../utility/constants';
 import { v4 as uuidv4 } from 'uuid';
-import { switchMap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { AnythingLLMService } from '../../services/anythingLLM.services';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import { Renderer2, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ThemeService } from '../../services/theme.services';
 
 const ENTER_KEY_ASCII = 13;
 
@@ -16,28 +20,60 @@ const ENTER_KEY_ASCII = 13;
 })
 export class ChatbotVerifiedComponent implements OnInit {
   private _messages: Message[] = [];
-  @Input() loading!: boolean;
+  private _loading: boolean = false; 
   private apiKey = environment.apiKey;
   private dialogRef!: MatDialogRef<any>;
   private scrollContainer: any;
+  private themeSubscription!: Subscription;
+  sidebarOpen: boolean = true;
+
+  isDarkMode: boolean = true; 
 
   message: string = "";
+  currentChat = 'segreteria'; 
 
-  userPath = "../../assets/user-path.png";
-  avatarPath = "../../assets/unical-profile.png";
+  userPath = "../../assets/avatar-user.png";
+  avatarPath = "../../assets/avatar-unical.png";
+  aiPath = "../../assets/avatar-ai.png";
 
   @ViewChild('confirmDeleteDialog') confirmDeleteDialog!: TemplateRef<any>;
   @ViewChild('scrollframe', { static: true }) scrollFrame!: ElementRef;
 
   constructor(
     private anythingLLMService: AnythingLLMService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public router: Router,
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document,
+    private themeService: ThemeService
   ) {}
+
+  @Input() set loading(value: boolean) {
+    this._loading = value;
+    this.scrollToBottom(); 
+  }
+
+  get loading(): boolean {
+    return this._loading;
+  }
+
+  navigateToChat(chat: string) {
+    this.currentChat = chat;
+    this.sidebarOpen = false;
+    if (chat === 'assistant') {
+      this.router.navigate(['/chat']);
+    } else if (chat === 'segreteria') {
+      this.router.navigate(['/chat-verified']);
+    }
+    this.scrollToBottom();
+  }
 
   sendMessage() {
     if (this.message) {
       this.getMessage(this.message);
       this.message = "";
+      this.scrollToBottom();
     }
   }
 
@@ -68,9 +104,11 @@ export class ChatbotVerifiedComponent implements OnInit {
 
   ngAfterViewInit() {
     this.scrollContainer = this.scrollFrame?.nativeElement;
+    this.scrollToBottom();
   }
 
   public scrollToBottom(): void {
+    this.cdr.detectChanges(); 
     if (this.scrollContainer) {
       this.scrollContainer.scroll({
         top: this.scrollContainer.scrollHeight,
@@ -87,6 +125,17 @@ export class ChatbotVerifiedComponent implements OnInit {
   ngOnInit() {
     this.loadConversation();
     this.fetchConversationFromBackend();
+    this.scrollToBottom();
+    this.themeSubscription = this.themeService.isDarkMode$.subscribe(isDarkMode => {
+      this.isDarkMode = isDarkMode;
+      this.applyTheme();
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.themeSubscription) {
+      this.themeSubscription.unsubscribe();
+    }
   }
 
   getMessage($event: string) {
@@ -95,6 +144,7 @@ export class ChatbotVerifiedComponent implements OnInit {
       this._messages = [...this._messages, messageObject];
       this.loading = true;
       this.saveConversation();
+      this.scrollToBottom();
 
       const user_token = localStorage.getItem('llm_token');
 
@@ -113,20 +163,24 @@ export class ChatbotVerifiedComponent implements OnInit {
             error => {
               console.error('Error asking question:', error);
               this.loading = false;
+              this.scrollToBottom();
             }
           );
         } else {
           console.error('User ID not found.');
           this.loading = false;
+          this.scrollToBottom();
         }
       } else {
         console.error('Token not found.');
         this.loading = false;
+        this.scrollToBottom();
       }
     } else {
       let messageObject: Message = this.createMessage($event, MESSAGE_TYPE.USER);
       this._messages = [...this._messages, messageObject];
       this.saveConversation();
+      this.scrollToBottom();
     }
   }
 
@@ -175,6 +229,7 @@ export class ChatbotVerifiedComponent implements OnInit {
           });
           this._messages = newMessages;
           this.saveConversation();
+          this.scrollToBottom();
         },
         error => {
           console.error('Error fetching conversation:', error);
@@ -209,11 +264,33 @@ export class ChatbotVerifiedComponent implements OnInit {
         this._messages = [];
         this.saveConversation();
         this.closeDialog();
+        this.scrollToBottom();
       },
       error => {
         console.error('Error clearing conversation:', error);
         this.closeDialog();
+        this.scrollToBottom();
       }
     );
+  }
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+    this.scrollToBottom();
+  }
+
+  applyTheme() {
+    const body = document.body;
+    if (this.isDarkMode) {
+      body.classList.add('dark-theme');
+      body.classList.remove('light-theme');
+    } else {
+      body.classList.add('light-theme');
+      body.classList.remove('dark-theme');
+    }
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
   }
 }

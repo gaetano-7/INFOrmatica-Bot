@@ -1,4 +1,7 @@
 import {
+  NG_VALUE_ACCESSOR
+} from "./chunk-AUDLM5PP.js";
+import {
   SelectionModel
 } from "./chunk-6BJME5AP.js";
 import {
@@ -19,9 +22,6 @@ import {
   coerceNumberProperty,
   hasModifierKey
 } from "./chunk-H2WV74N7.js";
-import {
-  NG_VALUE_ACCESSOR
-} from "./chunk-AUDLM5PP.js";
 import {
   CommonModule,
   NgTemplateOutlet
@@ -82,10 +82,10 @@ import {
   ɵɵtemplateRefExtractor,
   ɵɵviewQuery
 } from "./chunk-VA2LXRPO.js";
+import "./chunk-HL3YN3FC.js";
 import {
   merge
 } from "./chunk-OQLFUR6O.js";
-import "./chunk-HL3YN3FC.js";
 import {
   Subject,
   Subscription,

@@ -2,93 +2,100 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin: 0 auto; // Centra il contenuto orizzontalmente
-  padding-top: 60px; // Padding superiore per fare spazio all'header
-  width: 100%; // Assicurati che il contenuto occupi tutta la larghezza disponibile
-  box-sizing: border-box; // Include il padding nella larghezza dell'elemento
+  margin: 0 auto;
+  padding-top: 60px;
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #b71918, #ff7961);
 
   @media (max-width: 768px) {
-    padding-top: 50px; // Riduci il padding superiore sui dispositivi più piccoli
+    padding-top: 50px;
   }
 
   @media (max-width: 480px) {
-    padding-top: 40px; // Riduci ulteriormente il padding superiore sui dispositivi più piccoli
+    padding-top: 40px;
   }
 }
 
 body {
-  margin: 0; // Rimuovi il margine per assicurare che il contenuto sia allineato correttamente
+  margin: 0;
   font-family: Arial, sans-serif;
-  background-size: cover;
-  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px); // Altezza calcolata per tenere conto dell'header fisso
+  height: calc(100vh - 60px);
   overflow: hidden;
-  padding: 0; // Rimuovi il padding per evitare spazi vuoti indesiderati
+  padding: 0;
   backdrop-filter: blur(3px);
-  background-color: lightgray;
-
-  @media (max-width: 768px) {
-    height: calc(100vh - 50px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
-  }
-
-  @media (max-width: 480px) {
-    height: calc(100vh - 40px); // Altezza calcolata per tenere conto dell'header fisso sui dispositivi più piccoli
-  }
 }
 
 .profile-container {
   background-color: white;
-  border-radius: 10px;
-  padding: 30px 20px;
+  border-radius: 15px;
+  padding: 40px 30px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   text-align: left;
-  max-width: 950px; // Limita la larghezza massima per una migliore visualizzazione su schermi più grandi
-  width: 100%; // Assicurati che occupi tutta la larghezza disponibile
-  box-sizing: border-box; // Include il padding nella larghezza dell'elemento
+  max-width: 1000px; // Aumenta la larghezza massima
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
 
   @media (max-width: 768px) {
-    padding: 20px 15px; // Riduci il padding sui dispositivi più piccoli
+    padding: 30px 20px;
     max-width: 90%;
   }
 
   @media (max-width: 480px) {
-    padding: 15px 10px; // Riduci ulteriormente il padding sui dispositivi più piccoli
+    padding: 20px 15px;
     max-width: 95%;
   }
 }
 
 .header h1 {
-  font-size: 2em;
+  font-size: 2.5em; // Aumenta la dimensione del font
   text-align: center;
+  color: #333;
+  margin-bottom: 30px;
 
   @media (max-width: 768px) {
-    font-size: 1.8em; // Riduci la dimensione del font sui dispositivi più piccoli
+    font-size: 2em;
   }
 
   @media (max-width: 480px) {
-    font-size: 1.5em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+    font-size: 1.8em;
+  }
+
+  i {
+    color: #4CAF50;
+    margin-right: 10px;
   }
 }
 
 .profile-container .field {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
+  margin-bottom: 20px; // Aumenta il margine inferiore
+  padding-bottom: 15px; // Aumenta il padding inferiore
   border-bottom: 1px solid #ddd;
-  flex-wrap: wrap; // Permetti il wrapping del valore se è troppo lungo
+  flex-wrap: wrap;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
 
   @media (max-width: 768px) {
-    margin-bottom: 12px; // Riduci il margine inferiore sui dispositivi più piccoli
-    padding-bottom: 8px; // Riduci il padding inferiore sui dispositivi più piccoli
+    margin-bottom: 18px;
+    padding-bottom: 12px;
   }
 
   @media (max-width: 480px) {
-    margin-bottom: 10px; // Riduci ulteriormente il margine inferiore sui dispositivi più piccoli
-    padding-bottom: 6px; // Riduci ulteriormente il padding inferiore sui dispositivi più piccoli
+    margin-bottom: 15px;
+    padding-bottom: 10px;
   }
 }
 
@@ -97,33 +104,40 @@ body {
 }
 
 .profile-container .label {
-  font-size: 1.2em;
+  font-size: 1.5em; // Aumenta la dimensione del font
   font-weight: bold;
-  white-space: nowrap; // Impedisci il wrapping dell'etichetta
-  margin-right: 30px; // Aggiungi spazio tra l'etichetta e il valore
+  white-space: nowrap;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+
+  i {
+    margin-right: 8px;
+    color: #4CAF50;
+  }
 
   @media (max-width: 768px) {
-    font-size: 1em; // Riduci la dimensione del font sui dispositivi più piccoli
-    margin-right: 20px; // Riduci il margine destro sui dispositivi più piccoli
+    font-size: 1.3em;
+    margin-right: 20px;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.9em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
-    margin-right: 10px; // Riduci ulteriormente il margine destro sui dispositivi più piccoli
+    font-size: 1.1em;
+    margin-right: 10px;
   }
 }
 
 .profile-container .value {
   color: #777;
-  font-size: 1em;
-  word-break: break-word; // Permetti il wrapping e la rottura delle parole se necessario
-  flex: 1; // Assicura che il valore occupi lo spazio rimanente
+  font-size: 1.2em; // Aumenta la dimensione del font
+  word-break: break-word;
+  flex: 1;
 
   @media (max-width: 768px) {
-    font-size: 0.9em; // Riduci la dimensione del font sui dispositivi più piccoli
+    font-size: 1em;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.8em; // Riduci ulteriormente la dimensione del font sui dispositivi più piccoli
+    font-size: 0.9em;
   }
 }
