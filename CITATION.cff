@@ -1,0 +1,15 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: INFOrmatica Bot
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Francesco
+    family-names: Larocca
+    name-particle: Gaetano
+    email: gaetanosj9@gmail.com
+repository-code: 'https://github.com/gaetano-7/INFOrmatica-Bot'
